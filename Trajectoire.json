@@ -1,0 +1,84 @@
+[
+  {
+    "name": "Projet de développement logiciel A",
+    "start_date": "2022-01-01",
+    "end_date": "2022-12-31",
+    "stages": [
+      {
+        "name": "Analyse des besoins",
+        "start_date": "2022-01-01",
+        "end_date": "2022-03-31"
+      },
+      {
+        "name": "Conception",
+        "start_date": "2022-04-01",
+        "end_date": "2022-06-30"
+      },
+      {
+        "name": "Développement",
+        "start_date": "2022-07-01",
+        "end_date": "2022-09-30"
+      },
+      {
+        "name": "Tests et déploiement",
+        "start_date": "2022-10-01",
+        "end_date": "2022-12-31"
+      }
+    ]
+  },
+  {
+    "name": "Projet de développement de site web B",
+    "start_date": "2022-01-01",
+    "end_date": "2022-12-31",
+    "stages": [
+      {
+        "name": "Analyse des besoins",
+        "start_date": "2022-01-01",
+        "end_date": "2022-03-31"
+      },
+      {
+        "name": "Conception",
+        "start_date": "2022-04-01",
+        "end_date": "2022-06-30"
+      },
+      {
+        "name": "Développement",
+        "start_date": "2022-07-01",
+        "end_date": "2022-09-30"
+      },
+      {
+        "name": "Tests et déploiement",
+        "start_date": "2022-10-01",
+        "end_date": "2022-12-31"
+      }
+    ]
+  },
+  {
+    "name": "Projet de développement de site web B",
+    "start_date": "2022-01-01",
+    "end_date": "2022-12-31",
+    "stages": [
+      {
+        "name": "Analyse des besoins",
+        "start_date": "2022-01-01",
+        "end_date": "2022-03-31"
+      },
+      {
+        "name": "Conception",
+        "start_date": "2022-04-01",
+        "end_date": "2022-06-30"
+      },
+      {
+        "name": "Développement",
+        "start_date": "2022-07-01",
+        "end_date": "2022-09-30"
+      },
+      {
+        "name": "Tests et déploiement",
+        "start_date": "2022-10-01",
+        "end_date": "2022-12-31"
+      }
+    ]
+  }
+]
+ 
