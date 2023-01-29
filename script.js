@@ -15,26 +15,22 @@ reader.readAsText(file);
 
 function displayList() {
   let placeholder = document.querySelector("#data-output");
-  let out = "";
-  const json = JSON.parse(reader.result);
+  let out = "", out2="", out3="";
+  let json = JSON.parse(reader.result);
    json.forEach((element, index) => {
-      out += `
-      <tr>
-         <td class="project-container">
-            <span class="project-name" data-index="${index}">${element.name}</span>
-         </td>
-         <td>
-         ${element.start_date} <button class="edit-date-start" data-index="${index}">Modifier</button>
-     </td>
-     <td>
-         ${element.end_date} <button class="edit-date-end" data-index="${index}">Modifier</button>
-     </td>
-         <td> 
-            <button id="Edit">Edit</button>
-            <button id="Delete">Delete</button>
-         </td>
-      </tr>
-   `;
+    out += `
+    <tr>
+       <td class="project-container">
+          <span class="project-name"  data-index="${index}">${element.name}</span>
+       </td>
+       <td>
+          <input type="text" class="date-input-start-date" id="startdatepicker" data-index="${index}" value="${element.start_date}">
+      </td>
+      <td>
+         <input type="text" class="date-input-end-date" id="enddatepicker" data-index="${index}" value="${element.end_date}">
+      </td>
+    </tr>
+ `;
    });
    placeholder.innerHTML = out;
  
@@ -81,36 +77,61 @@ function displayList() {
    });
 
 
-   //Boutons Modifier
-   let editStartDateButtons = document.querySelectorAll(".edit-date-start");
-  let editEndDateButtons = document.querySelectorAll(".edit-date-end");
+   document.querySelectorAll(".date-input-start-date").forEach((date, index) => {
+    date.addEventListener("blur", function() {
+         // Create a copy of the original JSON object
+         let jsonCopy = JSON.parse(JSON.stringify(json));
 
-  editStartDateButtons.forEach((button) => {
-    button.addEventListener("click", function(event) {
-      console.log("Hello !")
-          // Récupérer l'index du projet
-          let index = event.target.dataset.index;
-          // Demander à l'utilisateur de saisir une nouvelle date de début
-          let newStartDate = prompt("Saisissez une nouvelle date de début", json[index].start_date);
-          // Mettre à jour la date de début pour ce projet
-          json[index].start_date = newStartDate;
-          console.log(json);
-          const jsonString = JSON.stringify(json);
-          const blob = new Blob([jsonString], {type: "application/json"});
-          saveAs(blob, "./trajectoire.json");
-      });
-  });
+         // Update the copy with the new date values
+         jsonCopy[index].start_date = date.value;
+ 
+         // Update the original JSON object with the updated copy
+         json = jsonCopy;
+ 
+         // Do something with the updated JSON object, such as sending it to a server or updating the UI
+         console.log(json);
 
-  editEndDateButtons.forEach((button) => {
-      button.addEventListener("click", function(event) {
-          // Récupérer l'index du projet
-          let index = event.target.dataset.index;
-          // Demander à l'utilisateur de saisir une nouvelle date de fin
-          let newEndDate = prompt("Saisissez une nouvelle date de fin", json[index].end_date);
-          // Mettre à jour la date de fin pour ce projet
-          json[index].end_date = newEndDate;
-      });
+    });
+});
+
+
+document.querySelectorAll(".date-input-end-date").forEach((date, index) => {
+  date.addEventListener("blur", function() {
+       // Create a copy of the original JSON object
+       let jsonCopy = JSON.parse(JSON.stringify(json));
+
+       // Update the copy with the new date values
+       jsonCopy[index].end_date = date.value;
+
+       // Update the original JSON object with the updated copy
+       json = jsonCopy;
+
+       // Do something with the updated JSON object, such as sending it to a server or updating the UI
+       console.log(json);
+
   });
+});
+
+
+document.getElementById("download").addEventListener("click", function() {
+  let jsonCopy = JSON.parse(JSON.stringify(json));
+  // Create a new Blob object containing the updated JSON
+  let jsonBlob = new Blob([JSON.stringify(jsonCopy, null, 2)], { type: "application/json" });
+  // Create a link element to trigger the download
+  let downloadLink = document.createElement("a");
+  downloadLink.href = window.URL.createObjectURL(jsonBlob);
+  downloadLink.download = "new-trajectory.json";
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  document.body.removeChild(downloadLink);
+});
+
+flatpickr("#startdatepicker", {allowInput:true});
+flatpickr("#enddatepicker", {allowInput:true});
+
+
+
+
 
 
 };
