@@ -7,7 +7,57 @@
       {
         "name": "Analyse des besoins",
         "start_date": "2022-01-01",
-        "end_date": "2022-03-31"
+        "end_date": "2022-03-31",
+        "views" : [
+          { 
+            "BU Effort" : [
+              {
+                "Key User" : "1",
+                "Business Analyst" : "2,5",
+                "Application Developer" : "3",
+                "Architect" : "1",
+                "Project Manager" : "2",
+                "Infrastructure" : "1"
+              }
+            ]
+          },
+          { 
+            "Limagrain IT Effort" : [
+              {
+                "Key User" : "1",
+                "Business Analyst" : "2,5",
+                "Application Developer" : "3",
+                "Architect" : "1",
+                "Project Manager" : "2",
+                "Infrastructure" : "1"
+              }
+            ]
+          },
+          { 
+            "External Effort" : [
+              {
+                "Key User" : "1",
+                "Business Analyst" : "2,5",
+                "Application Developer" : "3",
+                "Architect" : "1",
+                "Project Manager" : "2",
+                "Infrastructure" : "1"
+              }
+            ]
+          },
+          { 
+            "Implementation - Cash out (K€)" : [
+              {
+                "Key User" : "1",
+                "Business Analyst" : "2,5",
+                "Application Developer" : "3",
+                "Architect" : "1",
+                "Project Manager" : "2",
+                "Infrastructure" : "1"
+              }
+            ]
+          }
+        ]
       },
       {
         "name": "Conception",

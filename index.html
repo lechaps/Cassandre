@@ -172,5 +172,39 @@
         downloadAnchorNode.remove();
       }); 
     </script>
+    <script id="project_config" type="application/json">
+      [
+        { 
+          "name":"Default template",
+          "stages": [
+            {
+              "id": 1,
+              "name": "Analyse des besoins",
+              "duration": 3
+            },
+            {
+              "id": 2,
+              "name": "Conception",
+              "duration": 2
+            },
+            {
+              "id": 3,
+              "name": "Développement",
+              "duration": 6
+            },
+            {
+              "id": 4,
+              "name": "Test & Deploy",
+              "duration": 1
+            }
+          ]
+        }
+      ]
+    </script>
+        
+    <script>
+        var data = JSON.parse(document.getElementById("project_config").innerHTML);
+        console.log(data);
+    </script>
   </body>
 </html>
