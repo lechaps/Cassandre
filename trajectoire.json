@@ -1,0 +1,497 @@
+[
+  {
+    "name": "Projet de développement logiciel A",
+    "start_date": "2022-01-01",
+    "end_date": "2022-12-31",
+    "stages": [
+      {
+        "name": "Analyse des besoins",
+        "start_date": "2022-01-01",
+        "end_date": "2022-03-31",
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                  "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "External Effort",
+          "profils" : 
+            {
+              "key User" : "0",
+              "Business Analyst" : "0",
+              "Application Developer" : "0",
+              "Architect" : "0",
+              "Project Manager" : "0",
+              "Infrastructure" : "0"
+          
+            } 
+      },
+      {
+        "name" : "Implementation - Cash out (K€)",
+        "profils" : 
+          {
+            "key User" : "0",
+            "Business Analyst" : "0",
+            "Application Developer" : "0",
+            "Architect" : "0",
+            "Project Manager" : "0",
+            "Infrastructure" : "0"
+        
+          } 
+    }
+        
+        ]
+      },
+      {
+        "name": "Conception",
+        "start_date": "2022-04-01",
+        "end_date": "2022-06-30",
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "External Effort",
+          "profils" : 
+            {
+              "key User" : "0",
+              "Business Analyst" : "0",
+              "Application Developer" : "0",
+              "Architect" : "0",
+              "Project Manager" : "0",
+              "Infrastructure" : "0"
+          
+            } 
+      },
+      {
+        "name" : "Implementation - Cash out (K€)",
+        "profils" : 
+          {
+            "key User" : "0",
+            "Business Analyst" : "0",
+            "Application Developer" : "0",
+            "Architect" : "0",
+            "Project Manager" : "0",
+            "Infrastructure" : "0"
+        
+          } 
+    }
+        
+        ]
+      },
+      {
+        "name": "Développement",
+        "start_date": "2022-07-01",
+        "end_date": "2022-09-30",
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "10",
+                  "Business Analyst" : "10",
+                  "Application Developer" : "10",
+                  "Architect" : "10",
+                  "Project Manager" : "10",
+                 "Infrastructure" : "10"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "10",
+                "Business Analyst" : "10",
+                "Application Developer" : "10",
+                "Architect" : "10",
+                "Project Manager" : "10",
+               "Infrastructure" : "10"
+            
+              } 
+        },
+        {
+          "name" : "External Effort",
+          "profils" : 
+            {
+              "key User" : "0",
+              "Business Analyst" : "0",
+              "Application Developer" : "0",
+              "Architect" : "0",
+              "Project Manager" : "0",
+              "Infrastructure" : "0"
+          
+            } 
+      },
+      {
+        "name" : "Implementation - Cash out (K€)",
+        "profils" : 
+          {
+            "key User" : "0",
+            "Business Analyst" : "0",
+            "Application Developer" : "0",
+            "Architect" : "0",
+            "Project Manager" : "0",
+            "Infrastructure" : "0"
+        
+          } 
+    }
+        
+        ]
+      },
+      {
+        "name": "Tests et déploiement",
+        "start_date": "2022-10-01",
+        "end_date": "2022-12-31",
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "External Effort",
+          "profils" : 
+            {
+              "key User" : "0",
+              "Business Analyst" : "0",
+              "Application Developer" : "0",
+              "Architect" : "0",
+              "Project Manager" : "0",
+              "Infrastructure" : "0"
+          
+            } 
+      },
+      {
+        "name" : "Implementation - Cash out (K€)",
+        "profils" : 
+          {
+            "key User" : "0",
+            "Business Analyst" : "0",
+            "Application Developer" : "0",
+            "Architect" : "0",
+            "Project Manager" : "0",
+            "Infrastructure" : "0"
+        
+          } 
+    }
+        
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Projet de développement de site web B",
+    "start_date": "2022-01-01",
+    "end_date": "2022-12-31",
+    "stages": [
+      {
+        "name": "Analyse des besoins",
+        "start_date": "2022-01-01",
+        "end_date": "2022-03-31",
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "External Effort",
+          "profils" : 
+            {
+              "key User" : "0",
+              "Business Analyst" : "0",
+              "Application Developer" : "0",
+              "Architect" : "0",
+              "Project Manager" : "0",
+              "Infrastructure" : "0"
+          
+            } 
+      },
+      {
+        "name" : "Implementation - Cash out (K€)",
+        "profils" : 
+          {
+            "key User" : "0",
+            "Business Analyst" : "0",
+            "Application Developer" : "0",
+            "Architect" : "0",
+            "Project Manager" : "0",
+            "Infrastructure" : "0"
+        
+          } 
+    }
+        
+        ]
+      },
+      {
+        "name": "Conception",
+        "start_date": "2022-04-01",
+        "end_date": "2022-06-30",
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "External Effort",
+          "profils" : 
+            {
+              "key User" : "0",
+              "Business Analyst" : "0",
+              "Application Developer" : "0",
+              "Architect" : "0",
+              "Project Manager" : "0",
+              "Infrastructure" : "0"
+          
+            } 
+      },
+      {
+        "name" : "Implementation - Cash out (K€)",
+        "profils" : 
+          {
+            "key User" : "0",
+            "Business Analyst" : "0",
+            "Application Developer" : "0",
+            "Architect" : "0",
+            "Project Manager" : "0",
+            "Infrastructure" : "0"
+        
+          } 
+    }
+        
+        ]
+      },
+      {
+        "name": "Développement",
+        "start_date": "2022-07-01",
+        "end_date": "2022-09-30",
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "External Effort",
+          "profils" : 
+            {
+              "key User" : "0",
+              "Business Analyst" : "0",
+              "Application Developer" : "0",
+              "Architect" : "0",
+              "Project Manager" : "0",
+              "Infrastructure" : "0"
+          
+            } 
+      },
+      {
+        "name" : "Implementation - Cash out (K€)",
+        "profils" : 
+          {
+            "key User" : "0",
+            "Business Analyst" : "0",
+            "Application Developer" : "0",
+            "Architect" : "0",
+            "Project Manager" : "0",
+            "Infrastructure" : "0"
+        
+          } 
+    }
+        
+        ]
+      },
+      {
+        "name": "Tests et déploiement",
+        "start_date": "2022-10-01",
+        "end_date": "2022-12-31",
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "External Effort",
+          "profils" : 
+            {
+              "key User" : "0",
+              "Business Analyst" : "0",
+              "Application Developer" : "0",
+              "Architect" : "0",
+              "Project Manager" : "0",
+              "Infrastructure" : "0"
+          
+            } 
+      },
+      {
+        "name" : "Implementation - Cash out (K€)",
+        "profils" : 
+          {
+            "key User" : "0",
+            "Business Analyst" : "0",
+            "Application Developer" : "0",
+            "Architect" : "0",
+            "Project Manager" : "0",
+            "Infrastructure" : "0"
+        
+          } 
+    }
+        
+        ]
+      }
+    ]
+  }
+ 
+]

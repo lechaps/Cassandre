@@ -1,84 +1,135 @@
-/* I always reset all the html elements */
-*{
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
+table {
+	font-family: Arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+  	word-wrap: break-word;
+	margin-top: 20px;
+	margin-bottom: 20px 0;
+  }
 
-body{
-	font-family: sans-serif;
-	min-height: 100vh;
-	color: #555;
-}
-
-table{
-	width:  1000px;
-	margin: 30px auto;
-	border-collapse:collapse;
-}
-
-table th{
-	padding: 10px 0;
-	background-color: #f4f4f4;
-	/* background-color: #fff; */
-	border:  thin solid #d4d4d4;
-}
-
-table td{
-	padding: 10px;
-	border:  thin solid #d4d4d4;
-	width: 18%;
+  th:first-child {
+    width: 50%;
+  }
+  th:nth-child(2),
+  th:nth-child(3) {
+    width: 25%;
+  }
+  
+  th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
 	text-align: center;
-	background-color: #fff;
+	
+  }
+  
+  th {
+	background-color: #f2f2f2;
+	margin-top: 10px
+  }
+  
+  .sub-tasks-table {
+	width: 100%;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
 }
 
-table img{
-	width:  70%;
+.sub-task-table {
+	width: 100%;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
 }
 
-table td.total-price{
-	font-weight: bold;
-	font-size: 22px;
+.sub-task-table th{
+	width : 13%;
 }
-table a{
-	text-decoration: none;
-	color: darkred;
-	background-color: #ffecef;
-	padding: 10px 15px;
-}
-table a:active{
-	background-color: #ccf4d6;
-	color:  green;
+  
+input[type="text"] {
+	width: 80%;
+	border: 1px solid #ddd;
+	padding: 5px;	
+	overflow: hidden;
+	box-sizing: border-box;
+	
+
+	
+  }
+
+.add-subtask-btn {
+	
+	flex: 1;
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
 }
 
-table select{
-	padding: 10px;
-	width:  200px;
-	font-size: 16px;
-	border: thin solid #d4d4d4;
-	background-color: transparent;
+.add-project-btn {
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
 }
-table select:focus{
-	outline: none;
-}
-
-table img{
-	width:  60%;
-}
-
-.project-container {
-    width: 100%;
-    display: inline-block;
-}
-
 
 .project-name {
-	width: 20%;
+	display: center;
+	font-weight: bold;
+	cursor: pointer;
 	
-	}
+ }
+ .Sub-task-name{
+	cursor: pointer;
+ }
 
- .sub-tasks-table {
-    width: 100%;
-    display: block;
-    margin: 20px 0;
+ .project-container{
+	width: 80%;
+ }
+  
+
+.Sub-task-container{
+	width: 80%;
 }
+
+
+input[type="submit"] {
+	padding: 10px 20px;
+	background-color: green;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+  }
+  
+  a#download {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 50px;
+	padding: 10px 20px;
+	background-color: green;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	margin-top: 20px;
+	margin-bottom: 20px 0;
+	
+  }
+
+  
+  
+  input[type="file"] {
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	font-size: 15px;
+  }
+  
+  
