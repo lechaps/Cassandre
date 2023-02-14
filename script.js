@@ -16,12 +16,12 @@ function generateSubTaskTable(index, subTaskIndex, json) {
 
   let profils = Object.keys(subTaskData.views[0].profils);
   let views = subTaskData.views.map(v => v.name);
-
   let tableHTML = `
   <table class="sub-task-table">
     <thead>
       <tr>
         <th></th>
+        <th>Somme</th>
         ${profils.map((profil) => {
           return `<th>${profil}</th>`;
         }).join('')}
@@ -32,8 +32,9 @@ function generateSubTaskTable(index, subTaskIndex, json) {
         return `
           <tr>
             <td>${view}</td>
+            <td><p class="somme" >0</p></td>
             ${profils.map((profil) => {
-              let value = subTaskData.views.find(v => v.name === view).profils[profil];
+              let value = subTaskData.views.find(v => v.name === view).profils[profil]; 
               return `<td><input type="text" class="${profil}" value="${value}"></td>`;
             }).join('')}
           </tr>
@@ -187,19 +188,30 @@ function EditStage(e, json, index){
   }
 }
 
+function EditSomme(e, json, index, subTaskIndex, viewindex) {
+    let somme = 0;
+
+    
+      let profil = e.target.className;
+      somme += json[index].stages[subTaskIndex].views[viewindex].profils[profil];
+      console.log(somme)
+    
+}
+
 function EditView(e, json, index){
   if (e.target.classList.contains("Sub-task-name")) {
     // Check if the views table already exists
     let table = document.body.querySelector(".sub-task-table");
+    let somme = 0;
+
     if (table) {
     // Remove the sub-task table
      
       table.remove();
     }
     else{
-
       let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
-      console.log(index, subTaskIndex);
+      //console.log(index, subTaskIndex);
       let tableHTML = generateSubTaskTable(index,subTaskIndex, json);
       table = document.createElement('table');
       table.classList.add("sub-task-table");
@@ -209,12 +221,15 @@ function EditView(e, json, index){
       table.addEventListener("input", function(e) {
         let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
         let profil = e.target.className;
-        console.log("the view index is : ", viewindex);
+        //console.log("the view index is : ", viewindex);
         json[index].stages[subTaskIndex].views[viewindex].profils[profil] = e.target.value;
-       
+
+        somme += Number(json[index].stages[subTaskIndex].views[viewindex].profils[profil]);
+        console.log(somme); 
+
+
       });
-  
- 
+
     }
 
     let phasestable = document.body.querySelector(".Phases-table");
@@ -223,6 +238,7 @@ function EditView(e, json, index){
             phasestable.remove();
     }
     else{
+
 
       let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
       console.log(index, subTaskIndex);
@@ -246,7 +262,8 @@ function EditView(e, json, index){
         }
 
         json[index].stages[subTaskIndex].Phases[phaseindex][j] = e.target.value;
-       
+
+              
       });
 
       phasestable.addEventListener("click", function(e) {
