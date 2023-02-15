@@ -1,18 +1,77 @@
 function addMonthsToDate(dateString, duration) {
+
+  if (duration === 0)
+  {
+    return dateString;
+  }
+
+  else{
   let dateArr = dateString.split("-");
   let year = parseInt(dateArr[0].toString());
-  let month = parseInt(dateArr[1].toString()) - 1;
-  let day = parseInt(dateArr[2].toString());
-  let date = new Date(year, month, day);
+  let month = parseInt(dateArr[1].toString());
+  let date = new Date(year, month-1, 1);
   date.setMonth(date.getMonth() + parseInt(duration));
-  let resultDay = date.getDate().toString().padStart(2, '0');
   let resultMonth = (date.getMonth() + 1).toString().padStart(2, '0');
   let resultYear = date.getFullYear().toString();
-  return resultYear + '-' + resultMonth + '-' + resultDay ;
+  return resultYear + '-' + resultMonth;
+}
 }
 
+function getMonthsDuration(old_year, new_year)
+{
+  if (old_year === "")
+  {
+    return 0;
+  }
+
+  else{
+  let olddateArr = old_year.split("-");
+  let newdateArr = new_year.split("-");
+
+  let oldyear = parseInt(olddateArr[0].toString());
+  let oldmonth = parseInt(olddateArr[1].toString());
+  let olddate = new Date(oldyear, oldmonth-1, 1);
+
+  let newyear = parseInt(newdateArr[0].toString());
+  let newmonth = parseInt(newdateArr[1].toString());
+  let newdate = new Date(newyear, newmonth-1, 1);
+
+  let diffYears = (newyear - oldyear) * 12;
+  let diffMonths = newdate.getMonth() - olddate.getMonth();
+
+  return Number(diffYears + diffMonths);
+  }
+
+
+
+}
+
+function getEndDate(json, index) {
+  let max = new Date(json[1][index].start_date);
+
+  for (let i = 0; i < json[1][index].stages.length; i++) {
+    for (let j = 0; j < json[1][index].stages[i].Phases.length; j++) {
+      const phaseStart = new Date(json[1][index].stages[i].Phases[j][0]);
+      const phaseEnd = new Date(json[1][index].stages[i].Phases[j][1]);
+
+      if (phaseStart.getTime() > max.getTime()) {
+        max = phaseStart;
+      }
+      if (phaseEnd.getTime() > max.getTime()) {
+        max = phaseEnd;
+      }
+    }
+  }
+
+  let resultMonth = (max.getMonth() + 1).toString().padStart(2, '0');
+  let resultYear = max.getFullYear().toString();
+  return resultYear + '-' + resultMonth;
+
+}
+
+
 function generateSubTaskTable(index, subTaskIndex, json) {
-  let subTaskData = json[index].stages[subTaskIndex];
+  let subTaskData = json[1][index].stages[subTaskIndex];
 
   let profils = Object.keys(subTaskData.views[0].profils);
   let views = subTaskData.views.map(v => v.name);
@@ -21,7 +80,8 @@ function generateSubTaskTable(index, subTaskIndex, json) {
   <table class="sub-task-table">
     <thead>
       <tr>
-        <th></th>
+        <th>${json[1][index].stages[subTaskIndex].name}</th>
+        <th>Somme</th>
         ${profils.map((profil) => {
           return `<th>${profil}</th>`;
         }).join('')}
@@ -32,6 +92,7 @@ function generateSubTaskTable(index, subTaskIndex, json) {
         return `
           <tr>
             <td>${view}</td>
+            <td><span class="somme" id="enddatepicker">0</span></td>
             ${profils.map((profil) => {
               let value = subTaskData.views.find(v => v.name === view).profils[profil];
               return `<td><input type="text" class="${profil}" value="${value}"></td>`;
@@ -62,6 +123,67 @@ function DownloadJson(json){
   
 }
 
+function generateTJM(json){
+  const views = json[0].map((item) => item.view);
+  const profils = Object.keys(json[0][0].profils);
+
+  const tableHTML = `
+    <table class="TJM-table">
+      <thead>
+        <tr>
+          <th>TJM</th>
+          ${profils.map((profil) => {
+            return `<th>${profil}</th>`;
+          }).join('')}
+        </tr>
+      </thead>
+      <tbody>
+        ${views.map((view) => {
+          return `
+            <tr>
+              <td>${view}</td>
+              ${profils.map((profil) => {
+                let value = json[0].find((item) => item.view === view).profils[profil];
+                return `<td><input type="text" class="${profil}" value="${value}"></td>`;
+              }).join('')}
+            </tr>
+          `;
+        }).join('')}
+      </tbody>
+    </table>
+  `;
+  return tableHTML;
+}
+
+function EditTJM(json){
+
+  let table = document.body.querySelector(".TJM-table");
+    if (table) {
+    // Remove the sub-task table
+     
+      table.remove();
+    }
+    else{
+
+      let tableHTML = generateTJM(json);
+      table = document.createElement('table');
+      table.classList.add("TJM-table");
+      table.innerHTML = tableHTML;
+      document.body.appendChild(table);
+
+      table.addEventListener("input", function(e) {
+        let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
+        let profil = e.target.className;
+        console.log("the view index is : ", viewindex);
+        json[0][viewindex].profils[profil] = e.target.value;
+       
+      });
+  
+ 
+    }
+}
+
+
 function generateStagesTable(subTasksTable,subTasksTableBody, json, subTasksOut, e){
         // Find parent row of the clicked project name
         let parentRow = e.target.parentNode;
@@ -89,12 +211,10 @@ function generateStagesTable(subTasksTable,subTasksTableBody, json, subTasksOut,
 
         let index = e.target.parentNode.parentNode.rowIndex-1;
         
-        json[index].stages.forEach(function(subTask) {
+        json[1][index].stages.forEach(function(subTask) {
           for(let  i=0; i<subTask.Phases.length; i++)
           {
-            phasesmenu += `<option value="${i}">${i+1}</option>`;
-            
-
+            phasesmenu += `<option value="${i+1}">${i+1}</option>`;
           }
           subTasksOut += `
         <tr>
@@ -103,10 +223,10 @@ function generateStagesTable(subTasksTable,subTasksTableBody, json, subTasksOut,
           <button class="add-subtask-btn">+</button>
         </td>
         <td>
-          <input type="text" class="stage-input-start-date" id="stagestartdatepicker" data-index="${index}" value="${subTask.start_date}">
+          <input type="text" class="stage-input-start-date" id="stagestartdatepicker" data-index="${index}" value="${subTask.Phases[0][0]}">
         </td>
         <td>
-          <input type="text" class="stage-input-end-date" id="stageenddatepicker" data-index="${index}" value="${subTask.end_date}">
+          <input type="text" class="stage-input-end-date" id="stageenddatepicker" data-index="${index}" value="${subTask.Phases[0][1]}">
         </td>
         <td>
           <select class="phases" id="phasesmenu">
@@ -128,18 +248,18 @@ function generateStagesTable(subTasksTable,subTasksTableBody, json, subTasksOut,
 
 function generatePhasesTable(index, subTaskIndex, json){
 
-  let phases = json[index].stages[subTaskIndex].Phases;
+  let phases = json[1][index].stages[subTaskIndex].Phases;
   let table = '<table>';
   
 
-  table += '<tr><th>' + json[index].stages[subTaskIndex].name + '</th><th>Start Date</th><th>End Date</th></tr>';
+  table += '<tr><th>' + json[1][index].stages[subTaskIndex].name + '</th><th>Start Date</th><th>End Date</th></tr>';
 
 
   for (let i = 0; i < phases.length; i++) {
     const phase = phases[i];
     const startDate = phase[0];
     const endDate = phase[1];
-    table += `<tr><td>Phase ${i+1} <button class="add-phase">+</button></td><td><input type="text" class="start-phase" value="${startDate}"></td><td><input type="text" class="end-phase" value="${endDate}"></td></tr>`;
+    table += `<tr><td>Phase ${i+1} <button class="add-phase">+</button></td><td><input type="text" id="phasestartdatepicker" class="start-phase" value="${startDate}"></td><td><input type="text" id="phaseenddatepicker" class="end-phase" value="${endDate}"></td></tr>`;
   }
 
   table += '</table>';
@@ -161,29 +281,122 @@ function AddStage(e, json, index, subTasksTableBody){
   <td>
     <input type="text" class="stage-input-end-date" id="stagestartdatepicker">
   </td>
+  <td>
+    <select class="phases" id="phasesmenu">
+      <option value=1>1</option>
+             
+    </select>
+  </td> 
   `;
   e.target.parentElement.parentElement.after(newRow);
   let parentIndex = Array.from(subTasksTableBody.children).indexOf(newRow);
   console.log(parentIndex);
-  json[index].stages.splice(parentIndex, 0, {name: '', start_date: '', end_date: '', views: []});
+  json[1][index].stages.splice(parentIndex, 0, {name: '', Phases : [["",""]], views : viewconfig });
   reader.readAsText(new Blob([JSON.stringify(json)], { type: 'application/json' }));
-  flatpickr("#stagestartdatepicker", {allowInput:true,  dateFormat: "Y-m-d"});
-  flatpickr("#stageenddatepicker", {allowInput:true,  dateFormat: "Y-m-d"});
+  flatpickr("#stagestartdatepicker", {allowInput:true, plugins: [
+    new monthSelectPlugin({
+      dateFormat: "Y-m", //defaults to "F Y"
+      theme: "light" // defaults to "light"
+    })
+  ]});
+  
+  flatpickr("#stageenddatepicker", {allowInput:true, plugins: [
+    new monthSelectPlugin({
+    
+      dateFormat: "Y-m", //defaults to "F Y"
+      theme: "light" // defaults to "light"
+    })
+  ]});
 }
 
-function EditStage(e, json, index){
-  if (e.target.classList.contains("stage-input-start-date") || e.target.classList.contains("stage-input-end-date") || e.target.classList.contains("Sub-task-name")) {
-    let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
+function EditStage(evt,e, json, index){
+  if (evt.target.classList.contains("stage-input-start-date") || evt.target.classList.contains("stage-input-end-date") || evt.target.classList.contains("Sub-task-name")) {
+    let subTaskIndex = evt.target.parentNode.parentNode.rowIndex - 1;
+    let projectstart = e.target.parentNode.parentNode.querySelector('.date-input-start-date');
+    let projectend = e.target.parentNode.parentNode.querySelector('.date-input-end-date');
+    console.log("zab", projectstart.value);
+
+    let select = evt.target.parentNode.parentNode.querySelector('.phases');
     
-    if (e.target.classList.contains("stage-input-start-date")) {
-      json[index].stages[subTaskIndex].start_date = e.target.value;
-    } else if (e.target.classList.contains("stage-input-end-date")) {
-      json[index].stages[subTaskIndex].end_date = e.target.value;
+    
+    if (evt.target.classList.contains("stage-input-start-date")) {
+      
+      let data = json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][0] ;
+
+      //let's get our duration
+      console.log("vhv", data.toString());
+      let duration = getMonthsDuration(data.toString(), evt.target.value.toString());
+      console.log("ffff", duration);
+
+      //update the statrting date of the project
+      json[1][index].start_date = addMonthsToDate(json[1][index].start_date.toString(), duration)
+      projectstart.value = json[1][index].start_date;
+      
+
+      //updae all the dates with this duration
+      for (let i =0; i< json[1][index].stages.length; i++ ) 
+        {
+         for (let j=0; j<json[1][index].stages[i].Phases.length; j++)
+         {
+          if (json[1][index].stages[i].Phases[j][0]===""){
+            json[1][index].stages[i].Phases[j][0] = evt.target.value.toString()
+
+          }
+
+          else{
+
+
+           json[1][index].stages[i].Phases[j][0] = addMonthsToDate(json[1][index].stages[i].Phases[j][0].toString(), duration);
+           json[1][index].stages[i].Phases[j][1] = addMonthsToDate(json[1][index].stages[i].Phases[j][1].toString(), duration);
+         }
+        }
+
+
+        }
+
+        projectend.textContent = getEndDate(json, index);
+
+
+
+
+    } else if (evt.target.classList.contains("stage-input-end-date")) {
+      let data = json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][1];
+      //let's get our duration
+      let duration = getMonthsDuration(data.toString(), evt.target.value.toString());
+      console.log("ffff", duration);
+
+      //update the statrting date of the project
+      json[1][index].start_date = addMonthsToDate(json[1][index].start_date.toString(), duration);
+      projectstart.value = json[1][index].start_date;
+      
+
+      //updae all the dates with this duration
+      for (let i =0; i< json[1][index].stages.length; i++ ) 
+        {
+         for (let j=0; j<json[1][index].stages[i].Phases.length; j++)
+         {
+          if (json[1][index].stages[i].Phases[j][1]===""){
+            json[1][index].stages[i].Phases[j][1] = evt.target.value.toString()
+
+          }
+
+          else{
+           json[1][index].stages[i].Phases[j][0] = addMonthsToDate(json[1][index].stages[i].Phases[j][0].toString(), duration);
+           json[1][index].stages[i].Phases[j][1] = addMonthsToDate(json[1][index].stages[i].Phases[j][1].toString(), duration);
+         }
+        }
+
+
+        }
+
+        projectend.textContent = getEndDate(json, index);
+      
     }
     else{
-      json[index].stages[subTaskIndex].name = e.target.value;
+      json[1][index].stages[subTaskIndex].name = evt.target.value;
 
     }
+    
   }
 }
 
@@ -210,7 +423,17 @@ function EditView(e, json, index){
         let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
         let profil = e.target.className;
         console.log("the view index is : ", viewindex);
-        json[index].stages[subTaskIndex].views[viewindex].profils[profil] = e.target.value;
+        json[1][index].stages[subTaskIndex].views[viewindex].profils[profil] = e.target.value;
+
+        //calcul de somme
+        let somme=0;
+        for (const profile in json[1][index].stages[subTaskIndex].views[viewindex].profils){
+          somme += parseInt(json[1][index].stages[subTaskIndex].views[viewindex].profils[profile]);
+        }
+
+        //display the somme
+        let sum = e.target.parentNode.parentNode.querySelector('.somme');
+        sum.textContent = somme;
        
       });
   
@@ -232,26 +455,47 @@ function EditView(e, json, index){
       phasestable.innerHTML = tableHTML;
       document.body.appendChild(phasestable);
 
+     
+
       
-      phasestable.addEventListener("input", function(e) {
-        let phaseindex = e.target.parentNode.parentNode.rowIndex - 1;
-        let date = e.target.className;
+      phasestable.addEventListener("input", function(evt) {
+        let phaseindex = evt.target.parentNode.parentNode.rowIndex - 1;
+        let date = evt.target.className;
         let j=1;
-      
 
         if (date === "start-phase" )
         {
           j = 0;
+          let select = e.target.parentNode.parentNode.querySelector('.phases');
+          console.log("val",select.value);
+          console.log("val",phaseindex);
+        
+         
+
+          if (Number(phaseindex) === Number(select.value)){
+              console.log("ouuuuuuuus")
+              let row = e.target.parentNode.parentNode;
+              let startDateInput = row.querySelector('.stage-input-start-date');
+              startDateInput.value = evt.target.value;
+
+              let endDateInput = row.querySelector('.stage-input-end-date');
+          }
+          
 
         }
 
-        json[index].stages[subTaskIndex].Phases[phaseindex][j] = e.target.value;
+        json[1][index].stages[subTaskIndex].Phases[phaseindex][j] = evt.target.value;
        
       });
 
-      phasestable.addEventListener("click", function(e) {
-        if (e.target.classList.contains("add-phase")) {
-          let currentRow = e.target.closest("tr");
+      
+     
+
+
+      phasestable.addEventListener("click", function(evt) {
+        if (evt.target.classList.contains("add-phase")) {
+          
+          let currentRow = evt.target.closest("tr");
           let currentIndex = Array.prototype.indexOf.call(currentRow.parentNode.children, currentRow);
       
           // Clone the current row to create the new row
@@ -259,18 +503,51 @@ function EditView(e, json, index){
           let newPhaseIndex = parseInt(newRow.firstChild.textContent.match(/\d+/)) + 1;
           newRow.firstChild.innerHTML = `Phase ${newPhaseIndex} <button class="add-phase">+</button>`;
           newRow.children[1].firstChild.value = "";
+          newRow.children[1].firstChild.id = `phasestartdatepicker`;
           newRow.children[2].firstChild.value = "";
+          newRow.children[2].firstChild.id = `phaseenddatepicker`;
           currentRow.after(newRow);
       
           // Update the JSON data
-          json[index].stages[subTaskIndex].Phases.splice(currentIndex + 1, 0, ["", ""]);
+          json[1][index].stages[subTaskIndex].Phases.splice(currentIndex , 0, ["", ""]);
+
+          let select = e.target.parentNode.parentNode.querySelector('.phases');
+
+          // Get the number of existing options
+          let numOptions = select.options.length;
+
+          // Create a new option element
+          let newOption = document.createElement('option');
+          let phaseIndex = numOptions + 1;
+          newOption.value = phaseIndex;
+          newOption.text = `${phaseIndex}`;
+
+          // Append the new option to the select element
+          select.appendChild(newOption);
+          console.log("fff",newPhaseIndex);
+
+          select.options[newPhaseIndex-1].value = newPhaseIndex;
+          select.options[newPhaseIndex-1].text = newPhaseIndex;
+          console.log("index is", currentIndex);
+
       
           // Update the remaining rows
+     
           for (let i = currentIndex + 2; i < phasestable.rows.length; i++) {
             let row = phasestable.rows[i];
             let phaseIndex = parseInt(row.firstChild.textContent.match(/\d+/)) + 1;
             row.firstChild.innerHTML = ` Phase ${phaseIndex} <button class="add-phase">+</button>`;
+            
+            select.options[i-1].value = phaseIndex;
+            select.options[i-1].text = phaseIndex;
+            
+
+
           }
+
+          
+
+          
         }
       });
       
@@ -290,7 +567,7 @@ function EditView(e, json, index){
 
     select.addEventListener('change', function() {
       let subTaskIndex = select.parentNode.parentNode.rowIndex - 1;
-      let selectedPhase = json[index].stages[subTaskIndex].Phases[Number(select.value)];
+      let selectedPhase = json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1];
       startDateInput.value = selectedPhase[0];
       endDateInput.value = selectedPhase[1];
   });
@@ -307,9 +584,12 @@ reader = new FileReader();
 reader.onload = function() {
 const json = JSON.parse(reader.result);
 console.log(json);
+console.log("zab",getEndDate(json,0));
 };
 reader.readAsText(file);
 });
+
+
 
 
 function displayList() {
@@ -317,7 +597,7 @@ function displayList() {
   let out = "", out2="", out3="";
   
   let json = JSON.parse(reader.result);
-   json.forEach((element, index) => {
+   json[1].forEach((element, index) => {
     out += `
     <tr>
        <td class="project-container">
@@ -328,7 +608,7 @@ function displayList() {
           <input type="text" class="date-input-start-date" id="startdatepicker" data-index="${index}" value="${element.start_date}">
       </td>
       <td>
-         <input type="text" class="date-input-end-date" id="enddatepicker" data-index="${index}" value="${element.end_date}">
+      <span class="date-input-end-date" id="enddatepicker" data-index="${index}">${getEndDate(json, index)}</span>
       </td>
     </tr>
  `;
@@ -366,18 +646,29 @@ function displayList() {
         }
       });
 
-      subTasksTableBody.addEventListener("input", function(e) {
-        EditStage(e, json, index);
+      subTasksTableBody.addEventListener("input", function(evt) {
+        EditStage(evt,e, json, index);
         
       });
 
       subTasksTableBody.addEventListener("click", function(e) {
         EditView(e, json, index);
-      });
-           
-
-      flatpickr("#stagestartdatepicker", {allowInput:true});
-      flatpickr("#stageenddatepicker", {allowInput:true});
+      });  
+      
+      flatpickr("#stagestartdatepicker", {allowInput:true, plugins: [
+        new monthSelectPlugin({
+          dateFormat: "Y-m", //defaults to "F Y"
+          theme: "light" // defaults to "light"
+        })
+      ]});
+      
+      flatpickr("#stageenddatepicker", {allowInput:true, plugins: [
+        new monthSelectPlugin({
+        
+          dateFormat: "Y-m", //defaults to "F Y"
+          theme: "light" // defaults to "light"
+        })
+      ]});
 
      }
     }
@@ -392,45 +683,57 @@ function displayList() {
         <button class="add-project-btn">+</button>
         </td>
         <td>
-        <input type="text" class="date-input-start-date" id="startdatepicker">
+        <input type="text" class="date-input-start-date" id="startdatepicker" value = "">
         </td>
         <td>
-       <input type="text" class="date-input-end-date" id="enddatepicker">
+        <span class="date-input-end-date" id="enddatepicker"></span>
+
         </td>
         `;
 
 
         e.target.parentElement.parentElement.after(newRow);
         let index = Array.from(placeholder.children).indexOf(newRow);
-        json.splice(index, 0, {name: '', start_date: '', end_date: '', stages:[]});
+        json[1].splice(index, 0, {name: '', start_date: '', end_date: '', stages:[]});
         reader.readAsText(new Blob([JSON.stringify(json)], { type: 'application/json' }));
-        flatpickr("#stagestartdatepicker", {allowInput:true,  dateFormat: "Y-m-d"});
-        flatpickr("#stageenddatepicker", {allowInput:true,  dateFormat: "Y-m-d"});
-        console.log(json);
 
-        document.querySelectorAll(".date-input-start-date").forEach((date, index) => {
-          date.addEventListener("blur", function() {
+        // Get the start and end date inputs for the new row
+        const date = newRow.querySelector(".date-input-start-date");
+        const endDateInput = newRow.querySelector(".date-input-end-date");
+
+        flatpickr(date, { allowInput: true, plugins: [
+             new monthSelectPlugin({
+              dateFormat: "Y-m", //defaults to "F Y"
+              theme: "light" // defaults to "light"
+              })
+          ]});
+          
+        console.log(json);
+          date.addEventListener("input", function() {
+              if (date.value)
+              {
+            
                // Create a copy of the original JSON object
                let jsonCopy = JSON.parse(JSON.stringify(json));
       
                // Update the copy with the new date values
-               jsonCopy[index].start_date = date.value;
+               jsonCopy[1][index].start_date = date.value;
+               console.log(date.value);
+
 
                //remplir les satges à partir d'un script config
-               if(jsonCopy[index].stages && jsonCopy[index].stages.length === 0){
+               if(jsonCopy[1][index].stages && jsonCopy[1][index].stages.length === 0){
                 console.log("ce projet est encore vide !!!!!!, je vais le remplit pour vous :)");
                 console.log(typeof(date.value));
                 console.log(addMonthsToDate(date.value.toString(), config[0].duration));
       
-                jsonCopy[index].stages.splice(0, 0, {name: config[0].name,
-                                                    start_date:date.value.toString(),
-                                                     end_date: addMonthsToDate(date.value.toString(), config[0].duration),
+                jsonCopy[1][index].stages.splice(0, 0, {name: config[0].name,
+                                                     Phases : [[date.value.toString(),addMonthsToDate(date.value.toString(), config[0].duration) ]],
                                                     views : viewconfig});
                  for(let i=1; i< config.length ; i++ )
                  {
-                  jsonCopy[index].stages.splice(i, 0, {name: config[0].name,
-                                                     start_date: jsonCopy[index].stages[i-1].end_date, 
-                                                     end_date: addMonthsToDate(jsonCopy[index].stages[i-1].end_date, config[i].duration),
+                  jsonCopy[1][index].stages.splice(i, 0, {name: config[0].name, 
+                                                     Phases : [[jsonCopy[1][index].stages[i-1].Phases[0][1],addMonthsToDate(jsonCopy[1][index].stages[i-1].Phases[0][1], config[i].duration) ]],
                                                      views : viewconfig});
                  }
 
@@ -438,15 +741,25 @@ function displayList() {
 
               
               }
+
+              // Update the original JSON object with the updated copy
+              json = jsonCopy;
+
+              console.log("zab", getEndDate(json, index));
+
+              endDateInput.textContent = getEndDate(json, index).toString();
        
-               // Update the original JSON object with the updated copy
-               json = jsonCopy;
+               
        
                // Do something with the updated JSON object, such as sending it to a server or updating the UI
                console.log(json);
+            }
+
       
           });
-      });
+
+          
+      
       
       
       document.querySelectorAll(".date-input-end-date").forEach((date, index) => {
@@ -455,7 +768,7 @@ function displayList() {
              let jsonCopy = JSON.parse(JSON.stringify(json));
       
              // Update the copy with the new date values
-             jsonCopy[index].end_date = date.value;
+             jsonCopy[index][1].end_date = date.value;
       
              // Update the original JSON object with the updated copy
              json = jsonCopy;
@@ -472,7 +785,7 @@ function displayList() {
              let jsonCopy = JSON.parse(JSON.stringify(json));
       
              // Update the copy with the new date values
-             jsonCopy[index].name = name.value;
+             jsonCopy[index][1].name = name.value;
       
              // Update the original JSON object with the updated copy
              json = jsonCopy;
@@ -483,8 +796,20 @@ function displayList() {
         });
       });
 
-      flatpickr("#startdatepicker", {allowInput:true,  dateFormat: "Y-m-d"});
-      flatpickr("#enddatepicker", {allowInput:true,  dateFormat: "Y-m-d"});
+      flatpickr("#startdatepicker", {allowInput:true,  plugins: [
+        new monthSelectPlugin({
+          dateFormat: "Y-m", //defaults to "F Y"
+          theme: "light" // defaults to "light"
+        })
+      ]});
+
+      flatpickr("#enddatepicker", {allowInput:true, plugins: [
+        new monthSelectPlugin({
+        
+          dateFormat: "Y-m", //defaults to "F Y"
+          theme: "light" // defaults to "light"
+        })
+      ]});
 
 
       }
@@ -496,15 +821,38 @@ function displayList() {
 
 
 document.querySelectorAll(".date-input-start-date").forEach((date, index) => {
-    date.addEventListener("blur", function() {
+    date.addEventListener("input", function(e) {
          // Create a copy of the original JSON object
          let jsonCopy = JSON.parse(JSON.stringify(json));
 
+         //let's get our duration
+         let duration = getMonthsDuration(jsonCopy[1][index].start_date.toString(), date.value.toString());
+         console.log("ffff", duration);
+
+         //updae all the dates with this duration
+         for (let i =0; i< json[1][index].stages.length; i++ ) 
+         {
+          for (let j=0; j<json[1][index].stages[i].Phases.length; j++)
+          {
+            jsonCopy[1][index].stages[i].Phases[j][0] = addMonthsToDate(jsonCopy[1][index].stages[i].Phases[j][0].toString(), duration);
+            jsonCopy[1][index].stages[i].Phases[j][1] = addMonthsToDate(jsonCopy[1][index].stages[i].Phases[j][1].toString(), duration);
+          }
+
+
+         }
+
          // Update the copy with the new date values
-         jsonCopy[index].start_date = date.value;
+         jsonCopy[1][index].start_date = date.value;
 
          // Update the original JSON object with the updated copy
          json = jsonCopy;
+
+         //update the display
+         let subTasksTable = e.target.parentNode.parentNode.querySelector(".sub-tasks-table");
+         if (subTasksTable)
+         {
+          
+         }
 
     });
 });
@@ -515,7 +863,7 @@ document.querySelectorAll(".project-name").forEach((name, index) => {
        let jsonCopy = JSON.parse(JSON.stringify(json));
 
        // Update the copy with the new date values
-       jsonCopy[index].name = name.value;
+       jsonCopy[1][index].name = name.value;
 
        // Update the original JSON object with the updated copy
        json = jsonCopy;
@@ -527,8 +875,27 @@ document.getElementById("download").addEventListener("click", function() {
 DownloadJson(json);
 });
 
-flatpickr("#startdatepicker", {allowInput:true,  dateFormat: "Y-m", ariaDateFormat: "Y-m"});
-flatpickr("#enddatepicker", {allowInput:true,  dateFormat: "Y-m", ariaDateFormat: "Y-m"});
+document.getElementById("TJM").addEventListener("click", function() {
+  EditTJM(json);
+  
+  });
+
+flatpickr("#startdatepicker", {allowInput:true, plugins: [
+  new monthSelectPlugin({
+
+    dateFormat: "Y-m", //defaults to "F Y"
+    theme: "light" // defaults to "light"
+  })
+]});
+
+
+flatpickr("#enddatepicker", {allowInput:true, plugins: [
+  new monthSelectPlugin({
+  
+    dateFormat: "Y-m", //defaults to "F Y"
+    theme: "light" // defaults to "light"
+  })
+]});
 
 
 };

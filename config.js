@@ -47,6 +47,21 @@ var viewconfig =  [
        "Infrastructure" : "0"
     
       } 
-}
+  },
+  {
+    "name" : "IT External Effort",
+     "profils" : 
+    {
+     "key User" : "0",
+     "Business Analyst" : "0",
+     "Application Developer" : "0",
+     "Architect" : "0",
+     "Project Manager" : "0",
+    "Infrastructure" : "0"
+ 
+   } 
+  }
+
 
 ]
+
