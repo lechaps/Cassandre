@@ -26,12 +26,14 @@ var viewconfig =  [
       "name" : "Bu Effort",
       "profils" : 
         {
+        
           "key User" : "0",
           "Business Analyst" : "0",
           "Application Developer" : "0",
           "Architect" : "0",
           "Project Manager" : "0",
           "Infrastructure" : "0"
+          
       
         } 
   },
@@ -39,6 +41,7 @@ var viewconfig =  [
        "name" : "Limagrain IT Effort",
         "profils" : 
        {
+        
         "key User" : "0",
         "Business Analyst" : "0",
         "Application Developer" : "0",
