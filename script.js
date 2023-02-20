@@ -69,6 +69,52 @@ function getEndDate(json, index) {
 
 }
 
+function getEnd(json){
+
+  let max = new Date(getEndDate(json, 0 ));
+
+  for (let i=1; i < json[1].length; i++)
+  {
+    let date = new Date(getEndDate(json, i ));
+    if (date.getTime() > max.getTime())
+    {
+      max = date;
+    }
+
+  }
+
+  let resultMonth = (max.getMonth() + 1).toString().padStart(2, '0');
+  let resultYear = max.getFullYear().toString();
+  return resultYear + '-' + resultMonth;
+}
+
+function getStart(json){
+
+  let min = new Date(json[1][0].stages[0].Phases[0][0])
+
+  for (let i=0; i<json[1].length; i++)
+  {
+    for (let j=0; j<json[1][i].stages.length; j++)
+    {
+      let date = new Date(json[1][i].stages[j].Phases[0][0]);
+
+      if (date.getTime() < min.getTime())
+      {
+        min = date;
+      }
+
+
+    }
+  }
+
+  let resultMonth = (min.getMonth() + 1).toString().padStart(2, '0');
+  let resultYear = min.getFullYear().toString();
+  return resultYear + '-' + resultMonth;
+
+  
+
+}
+
 
 function generateSubTaskTable(index, subTaskIndex, json) {
   let subTaskData = json[1][index].stages[subTaskIndex];
@@ -183,7 +229,6 @@ function EditTJM(json){
     }
 }
 
-
 function generateStagesTable(subTasksTable,subTasksTableBody, json, subTasksOut, e){
         // Find parent row of the clicked project name
         let parentRow = e.target.parentNode;
@@ -221,6 +266,7 @@ function generateStagesTable(subTasksTable,subTasksTableBody, json, subTasksOut,
         <td class="Sub-task-container">
           <input type="text" class="Sub-task-name"  data-index="${index}" value="${subTask.name}">
           <button class="add-subtask-btn">+</button>
+          <button class="delete-subtask-btn">X</button>
         </td>
         <td>
           <input type="text" class="stage-input-start-date" id="stagestartdatepicker" data-index="${index}" value="${subTask.Phases[0][0]}">
@@ -259,7 +305,9 @@ function generatePhasesTable(index, subTaskIndex, json){
     const phase = phases[i];
     const startDate = phase[0];
     const endDate = phase[1];
-    table += `<tr><td>Phase ${i+1} <button class="add-phase">+</button></td><td><input type="text" id="phasestartdatepicker" class="start-phase" value="${startDate}"></td><td><input type="text" id="phaseenddatepicker" class="end-phase" value="${endDate}"></td></tr>`;
+    table += `<tr><td>Phase ${i+1} <button class="add-phase">+</button> <button class="delete-phase">X</button></td>
+              <td><input type="text" id="phasestartdatepicker" class="start-phase" value="${startDate}"></td>
+              <td><input type="text" id="phaseenddatepicker" class="end-phase" value="${endDate}"></td></tr>`;
   }
 
   table += '</table>';
@@ -309,11 +357,26 @@ function AddStage(e, json, index, subTasksTableBody){
   ]});
 }
 
-function EditStage(evt,e, json, index){
+function DeleteStage(e, json, index, subTasksTableBody){
+  
+  let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
+
+  json[1][index].stages.splice(subTaskIndex,1);
+
+  // Remove the corresponding table row from the HTML table
+  const rowToDelete = e.target.parentElement.parentElement;
+  rowToDelete.remove();
+  
+  
+  
+}
+
+function EditStage(subTasksTableBody,evt,e, json, index){
   if (evt.target.classList.contains("stage-input-start-date") || evt.target.classList.contains("stage-input-end-date") || evt.target.classList.contains("Sub-task-name")) {
     let subTaskIndex = evt.target.parentNode.parentNode.rowIndex - 1;
     let projectstart = e.target.parentNode.parentNode.querySelector('.date-input-start-date');
     let projectend = e.target.parentNode.parentNode.querySelector('.date-input-end-date');
+    let rows = subTasksTableBody.rows;
     console.log("zab", projectstart.value);
 
     let select = evt.target.parentNode.parentNode.querySelector('.phases');
@@ -333,21 +396,21 @@ function EditStage(evt,e, json, index){
       projectstart.value = json[1][index].start_date;
       
 
-      //updae all the dates with this duration
+      //update all the dates with this duration
       for (let i =0; i< json[1][index].stages.length; i++ ) 
         {
          for (let j=0; j<json[1][index].stages[i].Phases.length; j++)
          {
+         
           if (json[1][index].stages[i].Phases[j][0]===""){
             json[1][index].stages[i].Phases[j][0] = evt.target.value.toString()
 
           }
 
           else{
-
-
            json[1][index].stages[i].Phases[j][0] = addMonthsToDate(json[1][index].stages[i].Phases[j][0].toString(), duration);
            json[1][index].stages[i].Phases[j][1] = addMonthsToDate(json[1][index].stages[i].Phases[j][1].toString(), duration);
+           
          }
         }
 
@@ -355,7 +418,15 @@ function EditStage(evt,e, json, index){
         }
 
         projectend.textContent = getEndDate(json, index);
-
+        // update display of subtask dates
+      for (let i = 0; i < subTasksTableBody.rows.length; i++) {
+        let row = subTasksTableBody.rows[i];
+        let select = row.querySelector('.phases').value;
+        console.log("zaba", select);
+        row.cells[1].querySelector('.stage-input-start-date').value = json[1][index].stages[i].Phases[Number(select)-1][0];
+        row.cells[2].querySelector('.stage-input-end-date').value = json[1][index].stages[i].Phases[Number(select)-1][1] ;
+        
+      }
 
 
 
@@ -390,6 +461,7 @@ function EditStage(evt,e, json, index){
         }
 
         projectend.textContent = getEndDate(json, index);
+        
       
     }
     else{
@@ -549,6 +621,20 @@ function EditView(e, json, index){
 
           
         }
+
+        if (evt.target.classList.contains("delete-phase"))
+        {
+          let currentRow = evt.target.closest("tr");
+          let currentIndex = Array.prototype.indexOf.call(currentRow.parentNode.children, currentRow);
+
+          console.log("delete", currentIndex-1);
+
+          // Update the JSON data
+          json[1][index].stages[subTaskIndex].Phases.splice(currentIndex-1 , 1);
+
+          currentRow.remove();
+
+        }
       });
       
     
@@ -576,6 +662,125 @@ function EditView(e, json, index){
 
 }
 
+function deleteproject(e, index, json){
+
+  // Remove the project at the given index from the JSON array
+  json[1].splice(index, 1);
+
+  // Remove the corresponding table row from the HTML table
+  const rowToDelete = e.target.parentElement.parentElement;
+  rowToDelete.remove();
+
+  // Do something with the updated JSON object, such as sending it to a server or updating the UI
+  console.log(json);
+  
+}
+
+function generateFTEtable(json)
+{
+  let projects = json[1];
+
+  // Crée une table vide pour stocker les données
+  const tableData = {};
+
+  //index of the current project
+  let index = 0;
+
+
+  // Boucle sur tous les projets pour calculer les données du tableau
+  projects.forEach((project) => {
+  // Boucle sur les vues pour les projets
+  project.stages.forEach((stage) => {
+    stage.views.forEach((view) => {
+      const viewName = view.name;
+      const startDate = new Date(stage.Phases[0][0]);
+      const endDate = new Date(stage.Phases[stage.Phases.length - 1][1]);
+      let yearMonth = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2);
+      // Boucle sur les mois compris entre la date de début et la date de fin de chaque phase
+      while (yearMonth <= endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2)) {
+        if (!tableData[viewName]) tableData[viewName] = {};
+        if (!tableData[viewName][yearMonth]) tableData[viewName][yearMonth] = 0;
+        // Calcule la somme de la charge de chaque profil pour chaque vue pour chaque mois
+        Object.values(view.profils).forEach((charge) => {
+          tableData[viewName][yearMonth] += charge * 4.33 / 20;
+        });
+        // Passe au mois suivant
+        const year = parseInt(yearMonth.split('-')[0]);
+        const month = parseInt(yearMonth.split('-')[1]) + 1;
+        if (month > 12) {
+          yearMonth = (year + 1) + '-01';
+        } else {
+          yearMonth = year + '-' + ('0' + month).slice(-2);
+        }
+      }
+     });
+  });
+});
+
+console.log("fte", tableData);
+
+// Create table element
+const table = document.createElement('table');
+table.classList.add('FTE-table');
+
+// Create thead element and add header row to table
+const thead = document.createElement('thead');
+const headerRow = thead.insertRow();
+headerRow.insertCell().textContent = '';
+for (let year = parseInt(getStart(json).split('-')[0]); year <= parseInt(getEnd(json).split('-')[0]); year++) {
+  for (let month = 1; month <= 12; month+=2) {
+    const yearMonth = year + '-' + ('0' + month).slice(-2);
+    const th = document.createElement('th');
+    th.textContent = yearMonth;
+    headerRow.appendChild(th);
+  }
+}
+table.appendChild(thead);
+
+// Create tbody element and add data rows to table
+const tbody = document.createElement('tbody');
+Object.entries(tableData).forEach(([viewName, viewData]) => {
+  const row = tbody.insertRow();
+  const td1 = document.createElement('td');
+  td1.textContent = viewName;
+  row.appendChild(td1);
+  for (let year = parseInt(getStart(json).split('-')[0]); year <= parseInt(getEnd(json).split('-')[0]); year++) {
+    for (let month = 1; month <= 12; month+=2) {
+      const yearMonth = year + '-' + ('0' + month).slice(-2);
+      const td = document.createElement('td');
+      td.textContent = (viewData[yearMonth] || 0).toFixed(2);
+      row.appendChild(td);
+    }
+  }
+});
+
+table.appendChild(tbody);
+
+
+
+  return table.outerHTML;
+}
+
+function EditFTE(json){
+  let table = document.body.querySelector(".FTE-table");
+    if (table) {
+    // Remove the sub-task table
+     
+      table.remove();
+    }
+    else{
+
+      let tableHTML = generateFTEtable(json);
+      table = document.createElement('table');
+      table.classList.add("FTE-table");
+      table.innerHTML = tableHTML;
+      document.body.appendChild(table);
+
+      
+ 
+    }
+}
+
 const input = document.getElementById("file");
 let reader;
 input.addEventListener("change", function(e) {
@@ -584,7 +789,7 @@ reader = new FileReader();
 reader.onload = function() {
 const json = JSON.parse(reader.result);
 console.log(json);
-console.log("zab",getEndDate(json,0));
+console.log("end", getEnd(json));
 };
 reader.readAsText(file);
 });
@@ -603,6 +808,7 @@ function displayList() {
        <td class="project-container">
           <input type="text" class="project-name"  data-index="${index}" value="${element.name}">
           <button class="add-project-btn">+</button>
+          <button class="delete-project-btn">X</button>
        </td>
        <td>
           <input type="text" class="date-input-start-date" id="startdatepicker" data-index="${index}" value="${element.start_date}">
@@ -644,10 +850,14 @@ function displayList() {
           
          AddStage(e ,json, index, subTasksTableBody);
         }
+        if (e.target.classList.contains("delete-subtask-btn")) {
+          
+          DeleteStage(e ,json, index, subTasksTableBody);
+         }
       });
 
       subTasksTableBody.addEventListener("input", function(evt) {
-        EditStage(evt,e, json, index);
+        EditStage(subTasksTableBody,evt,e, json, index);
         
       });
 
@@ -681,6 +891,7 @@ function displayList() {
         <td class="project-container">
         <input type="text" class="project-name">
         <button class="add-project-btn">+</button>
+        <button class="delete-project-btn">X</button>
         </td>
         <td>
         <input type="text" class="date-input-start-date" id="startdatepicker" value = "">
@@ -758,7 +969,7 @@ function displayList() {
       
           });
 
-          
+      
       
       
       
@@ -812,6 +1023,13 @@ function displayList() {
       ]});
 
 
+      }
+
+      if (e.target.classList.contains("delete-project-btn"))
+      {
+        console.log("oussama");
+        let index = e.target.parentNode.parentNode.rowIndex-1;
+        deleteproject(e, index, json);
       }
 
 
@@ -879,6 +1097,11 @@ document.getElementById("TJM").addEventListener("click", function() {
   EditTJM(json);
   
   });
+
+document.getElementById("FTE").addEventListener("click", function() {
+    EditFTE(json);
+    
+    });
 
 flatpickr("#startdatepicker", {allowInput:true, plugins: [
   new monthSelectPlugin({

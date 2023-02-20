@@ -54,6 +54,16 @@ table {
 .TJM-table th{
 	width : 13%;
 }
+
+.FTE-table {
+	width: 100%;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.FTE-table th{
+	width : auto;
+}
   
 input[type="text"] {
 	width: 80%;
@@ -67,7 +77,18 @@ input[type="text"] {
   }
 
 .add-subtask-btn {
-	
+
+	flex: 1;
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.delete-subtask-btn {
+
 	flex: 1;
 	background-color: #ddd;
 	border: none;
@@ -78,6 +99,15 @@ input[type="text"] {
 }
 
 .add-project-btn {
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.delete-project-btn {
 	background-color: #ddd;
 	border: none;
 	padding: 5px 10px;
