@@ -298,7 +298,7 @@ function generatePhasesTable(index, subTaskIndex, json){
   let table = '<table>';
   
 
-  table += '<tr><th>' + json[1][index].stages[subTaskIndex].name + '</th><th>Start Date</th><th>End Date</th></tr>';
+  table += '<tr><th>' + json[1][index].name+ ' : ' +  json[1][index].stages[subTaskIndex].name + '</th><th>Start Date</th><th>End Date</th></tr>';
 
 
   for (let i = 0; i < phases.length; i++) {
