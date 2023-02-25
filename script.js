@@ -322,6 +322,7 @@ function AddStage(e, json, index, subTasksTableBody){
   <td class="Sub-task-container">
     <input type="text" class="Sub-task-name">
     <button class="add-subtask-btn">+</button>
+    <button class="delete-subtask-btn">X</button>
   </td>
   <td>
     <input type="text" class="stage-input-start-date" id="stagestartdatepicker">
@@ -481,7 +482,7 @@ function EditView(e, json, index){
      
       table.remove();
     }
-    else{
+   
 
       let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
       console.log(index, subTaskIndex);
@@ -510,21 +511,20 @@ function EditView(e, json, index){
       });
   
  
-    }
+    
 
     let phasestable = document.body.querySelector(".Phases-table");
     if (phasestable) {
             // Remove the sub-task table
             phasestable.remove();
     }
-    else{
+    
 
-      let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
-      console.log(index, subTaskIndex);
-      let tableHTML = generatePhasesTable(index,subTaskIndex, json);
+      
+      let tableHTML2 = generatePhasesTable(index,subTaskIndex, json);
       phasestable = document.createElement('table');
       phasestable.classList.add("Phases-table");
-      phasestable.innerHTML = tableHTML;
+      phasestable.innerHTML = tableHTML2;
       document.body.appendChild(phasestable);
 
      
@@ -573,7 +573,7 @@ function EditView(e, json, index){
           // Clone the current row to create the new row
           let newRow = currentRow.cloneNode(true);
           let newPhaseIndex = parseInt(newRow.firstChild.textContent.match(/\d+/)) + 1;
-          newRow.firstChild.innerHTML = `Phase ${newPhaseIndex} <button class="add-phase">+</button>`;
+          newRow.firstChild.innerHTML = `Phase ${newPhaseIndex} <button class="add-phase">+</button><button class="delete-phase">X</button>`;
           newRow.children[1].firstChild.value = "";
           newRow.children[1].firstChild.id = `phasestartdatepicker`;
           newRow.children[2].firstChild.value = "";
@@ -608,7 +608,7 @@ function EditView(e, json, index){
           for (let i = currentIndex + 2; i < phasestable.rows.length; i++) {
             let row = phasestable.rows[i];
             let phaseIndex = parseInt(row.firstChild.textContent.match(/\d+/)) + 1;
-            row.firstChild.innerHTML = ` Phase ${phaseIndex} <button class="add-phase">+</button>`;
+            row.firstChild.innerHTML = ` Phase ${phaseIndex} <button class="add-phase">+</button><button class="delete-phase">X</button>`;
             
             select.options[i-1].value = phaseIndex;
             select.options[i-1].text = phaseIndex;
@@ -640,7 +640,7 @@ function EditView(e, json, index){
     
   
  
-    }
+  
 
   }
 
