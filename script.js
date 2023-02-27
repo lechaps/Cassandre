@@ -116,7 +116,7 @@ function getStart(json){
 }
 
 
-function generateSubTaskTable(index, subTaskIndex, json) {
+function generateViewTable(index, subTaskIndex, json) {
   let subTaskData = json[1][index].stages[subTaskIndex];
 
   let profils = Object.keys(subTaskData.views[0].profils);
@@ -166,7 +166,7 @@ function DownloadJson(json){
     downloadLink.click();
     document.body.removeChild(downloadLink);
   
-  
+
 }
 
 function generateTJM(json){
@@ -378,7 +378,7 @@ function EditStage(subTasksTableBody,evt,e, json, index){
     let projectstart = e.target.parentNode.parentNode.querySelector('.date-input-start-date');
     let projectend = e.target.parentNode.parentNode.querySelector('.date-input-end-date');
     let rows = subTasksTableBody.rows;
-    console.log("zab", projectstart.value);
+    console.log("ness", projectstart.value);
 
     let select = evt.target.parentNode.parentNode.querySelector('.phases');
     
@@ -486,7 +486,7 @@ function EditView(e, json, index){
 
       let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
       console.log(index, subTaskIndex);
-      let tableHTML = generateSubTaskTable(index,subTaskIndex, json);
+      let tableHTML = generateViewTable(index,subTaskIndex, json);
       table = document.createElement('table');
       table.classList.add("sub-task-table");
       table.innerHTML = tableHTML;
@@ -943,7 +943,7 @@ function displayList() {
                                                     views : viewconfig});
                  for(let i=1; i< config.length ; i++ )
                  {
-                  jsonCopy[1][index].stages.splice(i, 0, {name: config[0].name, 
+                  jsonCopy[1][index].stages.splice(i, 0, {name: config[i].name, 
                                                      Phases : [[jsonCopy[1][index].stages[i-1].Phases[0][1],addMonthsToDate(jsonCopy[1][index].stages[i-1].Phases[0][1], config[i].duration) ]],
                                                      views : viewconfig});
                  }

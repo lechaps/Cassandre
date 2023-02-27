@@ -1,22 +1,48 @@
 var config = [
   {
     id: "1",
-    name: "Enter a new name for the stage",
+    name: "Business Requirement",
     duration: "3"
   },
   {
     id: "2",
-    name: "Enter a new name for the stage",
+    name: "Feasibility study",
     duration: "5"
   },
   {
     id: "3",
-    name: "Enter a new name for the stage",
+    name: "Initialization",
     duration: "2"
   },
   {
     id: "4",
-    name: "Enter a new name for the stage",
+    name: "Build",
+    duration: "2"
+  },
+
+  {
+    id: "5",
+    name: "Business Requirement",
+    duration: "3"
+  },
+  {
+    id: "6",
+    name: "Build Interfaces",
+    duration: "5"
+  },
+  {
+    id: "7",
+    name: "Budget infos",
+    duration: "5"
+  },
+  {
+    id: "8",
+    name: "UAT",
+    duration: "2"
+  },
+  {
+    id: "9",
+    name: "Run",
     duration: "2"
   }
 ];

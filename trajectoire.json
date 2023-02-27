@@ -43,12 +43,12 @@
 
   [
   {
-    "name": "Projet de développement logiciel A",
-    "start_date": "2022-08",
+    "name": "Core Study Business Processes",
+    "start_date": "2022-03",
     "end_date": "2023-12",
     "stages": [
       {
-        "name": "Analyse des besoins",
+        "name": "Business Requirement",
         "Phases" : [
           ["2022-03","2022-05"]
         ],
@@ -97,7 +97,522 @@
         ]
       },
       {
-        "name": "Conception",
+        "name": "Feasibility Study",
+        "Phases" : [
+          ["2022-08", "2022-09"],
+          ["2023-03","2023-07"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Initialization",
+        "Phases" : [
+          ["2022-03", "2022-05"],
+          ["2022-09", "2022-12"]
+         
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "10",
+                  "Business Analyst" : "10",
+                  "Application Developer" : "10",
+                  "Architect" : "10",
+                  "Project Manager" : "10",
+                 "Infrastructure" : "10"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "10",
+                "Business Analyst" : "10",
+                "Application Developer" : "10",
+                "Architect" : "10",
+                "Project Manager" : "10",
+               "Infrastructure" : "10"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Build",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Build",
+        "Phases" : [
+          ["2022-02", "2022-04"],
+          ["2022-06", "2022-08"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Build Interfaces",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2023-02","2023-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "UAT",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Finalization",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Run",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Budget infos",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      }
+
+
+    ]
+  },
+  {
+    "name": "Core Study Semantic",
+    "start_date": "2022-08",
+    "end_date": "2023-12",
+    "stages": [
+      {
+        "name": "Business Requirement",
+        "Phases" : [
+          ["2022-03","2022-05"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                  "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+          },
+          {
+            "name" : "IT External Effort",
+             "profils" : 
+            {
+             "key User" : "0",
+             "Business Analyst" : "0",
+             "Application Developer" : "0",
+             "Architect" : "0",
+             "Project Manager" : "0",
+            "Infrastructure" : "0"
+         
+           } 
+          }
+        
+        ]
+      },
+      {
+        "name": "Feasibility Study",
         "Phases" : [
           ["2022-08", "2022-09"],
           ["2024-03","2024-07"]
@@ -147,7 +662,7 @@
         ]
       },
       {
-        "name": "Développement",
+        "name": "Initialization",
         "Phases" : [
           ["2022-01", "2022-03"],
           ["2022-09", "2022-12"]
@@ -198,7 +713,313 @@
         ]
       },
       {
-        "name": "Tests et déploiement",
+        "name": "Build",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Build",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Build Interfaces",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "UAT",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Finalization",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Run",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Budget infos",
         "Phases" : [
           ["2022-01", "2022-03"],
           ["2022-07", "2022-09"],
@@ -248,19 +1069,119 @@
         
         ]
       }
+
+
     ]
   },
   {
-    "name": "Projet de développement de site web B",
-    "start_date": "2022-01",
-    "end_date": "2022-12",
-    
+    "name": "MDM",
+    "start_date": "2022-09",
+    "end_date": "2023-12",
     "stages": [
       {
-        "name": "Analyse des besoins",
+        "name": "Business Requirement",
+        "Phases" : [
+          ["2022-03","2022-05"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                  "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+          },
+          {
+            "name" : "IT External Effort",
+             "profils" : 
+            {
+             "key User" : "0",
+             "Business Analyst" : "0",
+             "Application Developer" : "0",
+             "Architect" : "0",
+             "Project Manager" : "0",
+            "Infrastructure" : "0"
+         
+           } 
+          }
+        
+        ]
+      },
+      {
+        "name": "Feasibility Study",
+        "Phases" : [
+          ["2022-08", "2022-09"],
+          ["2024-03","2024-07"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Initialization",
         "Phases" : [
           ["2022-01", "2022-03"],
-          ["2022-05", "2022-10"]
+          ["2022-09", "2022-12"]
          
         ],
         
@@ -269,12 +1190,12 @@
               "name" : "Bu Effort",
               "profils" : 
                 {
-                  "key User" : "0",
-                  "Business Analyst" : "0",
-                  "Application Developer" : "0",
-                  "Architect" : "0",
-                  "Project Manager" : "0",
-                 "Infrastructure" : "0"
+                  "key User" : "10",
+                  "Business Analyst" : "10",
+                  "Application Developer" : "10",
+                  "Architect" : "10",
+                  "Project Manager" : "10",
+                 "Infrastructure" : "10"
               
                 } 
           },
@@ -282,12 +1203,12 @@
                "name" : "Limagrain IT Effort",
                 "profils" : 
                {
-                "key User" : "0",
-                "Business Analyst" : "0",
-                "Application Developer" : "0",
-                "Architect" : "0",
-                "Project Manager" : "0",
-               "Infrastructure" : "0"
+                "key User" : "10",
+                "Business Analyst" : "10",
+                "Application Developer" : "10",
+                "Architect" : "10",
+                "Project Manager" : "10",
+               "Infrastructure" : "10"
             
               } 
         },
@@ -308,11 +1229,11 @@
         ]
       },
       {
-        "name": "Conception",
+        "name": "Build",
         "Phases" : [
           ["2022-01", "2022-03"],
-          ["2023-03", "2023-06"],
-          ["2024-09","2024-12"]
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
         ],
         
         "views": [
@@ -323,7 +1244,7 @@
                   "key User" : "0",
                   "Business Analyst" : "0",
                   "Application Developer" : "0",
-                  "Architect" : "0",
+                  "Architect" : "10000",
                   "Project Manager" : "0",
                  "Infrastructure" : "0"
               
@@ -359,10 +1280,11 @@
         ]
       },
       {
-        "name": "Développement",
+        "name": "Build",
         "Phases" : [
-          ["2022-04", "2022-08"],
-          ["2023-01", "2023-05"]
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
         ],
         
         "views": [
@@ -373,7 +1295,7 @@
                   "key User" : "0",
                   "Business Analyst" : "0",
                   "Application Developer" : "0",
-                  "Architect" : "0",
+                  "Architect" : "10000",
                   "Project Manager" : "0",
                  "Infrastructure" : "0"
               
@@ -409,10 +1331,11 @@
         ]
       },
       {
-        "name": "Tests et déploiement",
+        "name": "Build Interfaces",
         "Phases" : [
-          ["2022-04", "2022-08"]
-          
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
         ],
         
         "views": [
@@ -423,7 +1346,211 @@
                   "key User" : "0",
                   "Business Analyst" : "0",
                   "Application Developer" : "0",
-                  "Architect" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "UAT",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Finalization",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Run",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Budget infos",
+        "Phases" : [
+          ["2022-01", "2022-03"],
+          ["2022-07", "2022-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
                   "Project Manager" : "0",
                  "Infrastructure" : "0"
               
@@ -458,8 +1585,527 @@
         
         ]
       }
+
+
+    ]
+  },
+  {
+    "name": "Core Study BI Analytics",
+    "start_date": "2023-01",
+    "end_date": "2023-12",
+    "stages": [
+      {
+        "name": "Business Requirement",
+        "Phases" : [
+          ["2023-03","2023-05"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                  "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+          },
+          {
+            "name" : "IT External Effort",
+             "profils" : 
+            {
+             "key User" : "0",
+             "Business Analyst" : "0",
+             "Application Developer" : "0",
+             "Architect" : "0",
+             "Project Manager" : "0",
+            "Infrastructure" : "0"
+         
+           } 
+          }
+        
+        ]
+      },
+      {
+        "name": "Feasibility Study",
+        "Phases" : [
+          ["2023-08", "2023-09"],
+          ["2025-03","2025-07"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "0",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Initialization",
+        "Phases" : [
+          ["2024-01", "2024-03"],
+          ["2024-09", "2024-12"]
+         
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "10",
+                  "Business Analyst" : "10",
+                  "Application Developer" : "10",
+                  "Architect" : "10",
+                  "Project Manager" : "10",
+                 "Infrastructure" : "10"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "10",
+                "Business Analyst" : "10",
+                "Application Developer" : "10",
+                "Architect" : "10",
+                "Project Manager" : "10",
+               "Infrastructure" : "10"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Build",
+        "Phases" : [
+          ["2023-12", "2024-02"],
+          ["2023-07", "2023-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Build",
+        "Phases" : [
+          ["2023-12", "2024-02"],
+          ["2023-07", "2023-09"],
+          ["2024-02","2024-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Build Interfaces",
+        "Phases" : [
+          ["2024-01", "2024-03"],
+          ["2024-07", "2024-09"],
+          ["2025-02","2025-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "UAT",
+        "Phases" : [
+          ["2025-01", "2025-03"],
+          ["2025-07", "2025-09"],
+          ["2026-02","2026-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Finalization",
+        "Phases" : [
+          ["2026-01", "2026-03"],
+          ["2026-07", "2026-09"],
+          ["2026-02","2026-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Run",
+        "Phases" : [
+          ["2024-01", "2024-03"],
+          ["2025-07", "2025-09"],
+          ["2023-02","2023-06"]
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      },
+      {
+        "name": "Budget infos",
+        "Phases" : [
+          ["2026-01", "2026-03"],
+          ["2026-07", "2026-09"]
+        
+        ],
+        
+        "views": [
+          {
+              "name" : "Bu Effort",
+              "profils" : 
+                {
+                  "key User" : "0",
+                  "Business Analyst" : "0",
+                  "Application Developer" : "0",
+                  "Architect" : "10000",
+                  "Project Manager" : "0",
+                 "Infrastructure" : "0"
+              
+                } 
+          },
+          {
+               "name" : "Limagrain IT Effort",
+                "profils" : 
+               {
+                "key User" : "0",
+                "Business Analyst" : "0",
+                "Application Developer" : "0",
+                "Architect" : "0",
+                "Project Manager" : "0",
+               "Infrastructure" : "0"
+            
+              } 
+        },
+        {
+          "name" : "IT External Effort",
+           "profils" : 
+          {
+           "key User" : "0",
+           "Business Analyst" : "0",
+           "Application Developer" : "0",
+           "Architect" : "0",
+           "Project Manager" : "0",
+          "Infrastructure" : "0"
+       
+         } 
+        }
+        
+        ]
+      }
+
+
     ]
   }
-]
  
+ 
+]
 ]
