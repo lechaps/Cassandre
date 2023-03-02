@@ -69,6 +69,29 @@ function getEndDate(json, index) {
 
 }
 
+function getStartDate(json, index) {
+  let min = new Date(json[1][index].stages[0].Phases[0][0]);
+
+  for (let i = 0; i < json[1][index].stages.length; i++) {
+    for (let j = 0; j < json[1][index].stages[i].Phases.length; j++) {
+      const phaseStart = new Date(json[1][index].stages[i].Phases[j][0]);
+      const phaseEnd = new Date(json[1][index].stages[i].Phases[j][1]);
+
+      if (phaseStart.getTime() < min.getTime()) {
+        min = phaseStart;
+      }
+      if (phaseEnd.getTime() < min.getTime()) {
+        min = phaseEnd;
+      }
+    }
+  }
+
+  let resultMonth = (min.getMonth() + 1).toString().padStart(2, '0');
+  let resultYear = min.getFullYear().toString();
+  return resultYear + '-' + resultMonth;
+
+}
+
 function getEnd(json){
 
   let max = new Date(getEndDate(json, 0 ));
@@ -474,6 +497,10 @@ function EditStage(subTasksTableBody,evt,e, json, index){
 
 function EditView(e, json, index){
   if (e.target.classList.contains("Sub-task-name")) {
+
+    //editing the view table
+
+
     // Check if the views table already exists
     let table = document.body.querySelector(".sub-task-table");
     if (table) {
@@ -481,7 +508,7 @@ function EditView(e, json, index){
      
       table.remove();
     }
-    else{
+    
 
       let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
       console.log(index, subTaskIndex);
@@ -490,6 +517,16 @@ function EditView(e, json, index){
       table.classList.add("sub-task-table");
       table.innerHTML = tableHTML;
       document.body.appendChild(table);
+
+      let sumCells = table.querySelectorAll('.somme');
+
+      json[1][index].stages[subTaskIndex].views.forEach((view, viewIndex) => {
+      let sum = 0;
+      for (const profile in view.profils) {
+          sum += parseInt(view.profils[profile]);
+          }
+          sumCells[viewIndex].textContent = sum;
+          });
 
       table.addEventListener("input", function(e) {
         let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
@@ -508,23 +545,24 @@ function EditView(e, json, index){
         sum.textContent = somme;
        
       });
+
+    //editing the phasetable
   
- 
-    }
 
     let phasestable = document.body.querySelector(".Phases-table");
     if (phasestable) {
             // Remove the sub-task table
             phasestable.remove();
     }
-    else{
 
-      let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
-      console.log(index, subTaskIndex);
-      let tableHTML = generatePhasesTable(index,subTaskIndex, json);
+    
+    
+
+      
+      let tableHTML2 = generatePhasesTable(index,subTaskIndex, json);
       phasestable = document.createElement('table');
       phasestable.classList.add("Phases-table");
-      phasestable.innerHTML = tableHTML;
+      phasestable.innerHTML = tableHTML2;
       document.body.appendChild(phasestable);
 
      
@@ -640,7 +678,7 @@ function EditView(e, json, index){
     
   
  
-    }
+    
 
   }
 
@@ -761,6 +799,97 @@ table.appendChild(tbody);
   return table.outerHTML;
 }
 
+function getProfilValue(json, viewName, profilName) {
+  for (let i=0; i<json[0].length ; i++)
+  {
+    if(json[0][i].view === viewName)
+    {
+      return json[0][i].profils[profilName];
+    }
+  }
+
+}
+    
+
+function generateCashOuttable(json)
+{
+  let projects = json[1];
+
+  // Crée une table vide pour stocker les données
+  const tableData = {};
+
+  // Boucle sur tous les projets pour calculer les données du tableau
+  projects.forEach((project) => {
+  // Boucle sur les vues pour les projets
+  project.stages.forEach((stage) => {
+    stage.views.forEach((view) => {
+      const viewName = view.name;
+      const startDate = new Date(stage.Phases[0][0]);
+      const endDate = new Date(stage.Phases[stage.Phases.length - 1][1]);
+      let yearMonth = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2);
+      // Boucle sur les mois compris entre la date de début et la date de fin de chaque phase
+      while (yearMonth <= endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2)) {
+        if (!tableData[viewName]) tableData[viewName] = {};
+         // Calculate the total cash out for each fiscal year
+         const year = parseInt(yearMonth.split('-')[0]);
+         const month = parseInt(yearMonth.split('-')[1]);
+         const fiscalYear = (month >= 7) ? year + '-' + (year + 1).toString().substr(-2) : (year - 1) + '-' + year.toString().substr(-2);
+         if (!tableData[viewName][fiscalYear]) tableData[viewName][fiscalYear] = 0;
+         Object.entries(view.profils).forEach(([profil, charge]) => {
+           // Get the TJM for each profile and multiply it by the FTE for each month
+           const tjm = getProfilValue(json, viewName, profil);
+           const fte = charge * 4.33 / 20;
+           tableData[viewName][fiscalYear] += tjm * fte;
+         });
+
+
+         // Passe au mois suivant
+         const nextyear = parseInt(yearMonth.split('-')[0]);
+         const nextmonth = parseInt(yearMonth.split('-')[1]) + 1;
+         if (nextmonth > 12) {
+           yearMonth = (nextyear + 1) + '-01';
+         } else {
+           yearMonth = nextyear + '-' + ('0' + nextmonth).slice(-2);
+         }    
+        
+      }
+     });
+  });
+});
+
+console.log("cashout", tableData);
+
+    // Create table element
+    const table = document.createElement('table');
+    table.classList.add('cash-out-table');
+
+    // Create table header
+    const header = table.createTHead();
+    const headerRow = header.insertRow();
+    headerRow.insertCell().textContent = 'View';
+    Object.keys(tableData[Object.keys(tableData)[0]]).forEach((fiscalYear) => {
+      headerRow.insertCell().textContent = fiscalYear;
+  });
+    
+
+// Create table body
+    const body = table.createTBody();
+    Object.entries(tableData).forEach(([viewName, viewData]) => {
+    const row = body.insertRow();
+    row.insertCell().textContent = viewName;
+    Object.values(viewData).forEach((cashOut) => {
+    const cell = row.insertCell();
+    cell.textContent = cashOut.toFixed(2);
+});
+});
+
+
+
+return table.outerHTML;
+}
+
+
+
 function EditFTE(json){
   let table = document.body.querySelector(".FTE-table");
     if (table) {
@@ -781,18 +910,39 @@ function EditFTE(json){
     }
 }
 
+function EditCashout(json){
+  let table = document.body.querySelector(".cash-out-table");
+    if (table) {
+    // Remove the sub-task table
+     
+      table.remove();
+    }
+    else{
+
+      let tableHTML = generateCashOuttable(json);
+      table = document.createElement('table');
+      table.classList.add("cash-out-table");
+      table.innerHTML = tableHTML;
+      document.body.appendChild(table);
+
+      
+ 
+    }
+}
+
 const input = document.getElementById("file");
 let reader;
+let json
 input.addEventListener("change", function(e) {
 const file = e.target.files[0];
 reader = new FileReader();
 reader.onload = function() {
-const json = JSON.parse(reader.result);
-console.log(json);
-console.log("end", getEnd(json));
+json = JSON.parse(reader.result);
+generateCashOuttable(json);
 };
 reader.readAsText(file);
 });
+
 
 
 
@@ -801,7 +951,7 @@ function displayList() {
   let placeholder = document.querySelector("#data-output");
   let out = "", out2="", out3="";
   
-  let json = JSON.parse(reader.result);
+  json = JSON.parse(reader.result);
    json[1].forEach((element, index) => {
     out += `
     <tr>
@@ -1101,6 +1251,11 @@ document.getElementById("TJM").addEventListener("click", function() {
 document.getElementById("FTE").addEventListener("click", function() {
     EditFTE(json);
     
+    });
+
+document.getElementById("CashOut").addEventListener("click", function() {
+     EditCashout(json);
+      
     });
 
 flatpickr("#startdatepicker", {allowInput:true, plugins: [

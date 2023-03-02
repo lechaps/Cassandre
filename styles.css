@@ -199,6 +199,41 @@ input[type="submit"] {
 	margin-bottom: 20px 0;
 	
   }
+  a#gantt-button {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 50px;
+	padding: 10px 20px;
+	background-color: green;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	margin-top: 20px;
+	margin-bottom: 20px 0;
+	
+  }
+
+  a#CashOut {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 50px;
+	padding: 10px 20px;
+	background-color: green;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	margin-top: 20px;
+	margin-bottom: 20px 0;
+	
+  }
 
   #download, #TJM {
 	float: left;
@@ -206,15 +241,51 @@ input[type="submit"] {
 	margin-bottom: 20px;
 
   }
-  
 
   
   
+
   input[type="file"] {
 	padding: 10px;
 	border-radius: 5px;
 	border: 1px solid gray;
 	font-size: 15px;
   }
+
+  .gantt-container {
+    width: 90vw; 
+    margin: 0 auto;
+}
+
+.chart-controls {
+    text-align: center;
+}
+.chart-controls > p {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.gantt .bar-progress {
+    fill: #a3a3ff !important;
+}
+
+.special .bar-progress {
+    fill: red !important;
+}
+
+
+
+.main-task .bar-progress {
+    fill: red !important;
+}
+
+
+
+
+
+
+
+
   
+
   
