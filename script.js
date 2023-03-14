@@ -139,7 +139,7 @@ function getStart(json){
 }
 
 
-function generateViewTable(index, subTaskIndex, json) {
+function generateSubTaskTable(index, subTaskIndex, json) {
   let subTaskData = json[1][index].stages[subTaskIndex];
 
   let profils = Object.keys(subTaskData.views[0].profils);
@@ -189,7 +189,7 @@ function DownloadJson(json){
     downloadLink.click();
     document.body.removeChild(downloadLink);
   
-
+  
 }
 
 function generateTJM(json){
@@ -345,7 +345,6 @@ function AddStage(e, json, index, subTasksTableBody){
   <td class="Sub-task-container">
     <input type="text" class="Sub-task-name">
     <button class="add-subtask-btn">+</button>
-    <button class="delete-subtask-btn">X</button>
   </td>
   <td>
     <input type="text" class="stage-input-start-date" id="stagestartdatepicker">
@@ -401,7 +400,7 @@ function EditStage(subTasksTableBody,evt,e, json, index){
     let projectstart = e.target.parentNode.parentNode.querySelector('.date-input-start-date');
     let projectend = e.target.parentNode.parentNode.querySelector('.date-input-end-date');
     let rows = subTasksTableBody.rows;
-    console.log("ness", projectstart.value);
+    console.log("zab", projectstart.value);
 
     let select = evt.target.parentNode.parentNode.querySelector('.phases');
     
@@ -509,15 +508,11 @@ function EditView(e, json, index){
      
       table.remove();
     }
-<<<<<<< HEAD
     
-=======
-   
->>>>>>> e79103a1a47404dd91606734cf0600f94236504b
 
       let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
       console.log(index, subTaskIndex);
-      let tableHTML = generateViewTable(index,subTaskIndex, json);
+      let tableHTML = generateSubTaskTable(index,subTaskIndex, json);
       table = document.createElement('table');
       table.classList.add("sub-task-table");
       table.innerHTML = tableHTML;
@@ -553,26 +548,16 @@ function EditView(e, json, index){
 
     //editing the phasetable
   
-<<<<<<< HEAD
-=======
- 
-    
->>>>>>> e79103a1a47404dd91606734cf0600f94236504b
 
     let phasestable = document.body.querySelector(".Phases-table");
     if (phasestable) {
             // Remove the sub-task table
             phasestable.remove();
     }
-<<<<<<< HEAD
 
     
     
 
-=======
-    
-
->>>>>>> e79103a1a47404dd91606734cf0600f94236504b
       
       let tableHTML2 = generatePhasesTable(index,subTaskIndex, json);
       phasestable = document.createElement('table');
@@ -626,7 +611,7 @@ function EditView(e, json, index){
           // Clone the current row to create the new row
           let newRow = currentRow.cloneNode(true);
           let newPhaseIndex = parseInt(newRow.firstChild.textContent.match(/\d+/)) + 1;
-          newRow.firstChild.innerHTML = `Phase ${newPhaseIndex} <button class="add-phase">+</button><button class="delete-phase">X</button>`;
+          newRow.firstChild.innerHTML = `Phase ${newPhaseIndex} <button class="add-phase">+</button>`;
           newRow.children[1].firstChild.value = "";
           newRow.children[1].firstChild.id = `phasestartdatepicker`;
           newRow.children[2].firstChild.value = "";
@@ -661,7 +646,7 @@ function EditView(e, json, index){
           for (let i = currentIndex + 2; i < phasestable.rows.length; i++) {
             let row = phasestable.rows[i];
             let phaseIndex = parseInt(row.firstChild.textContent.match(/\d+/)) + 1;
-            row.firstChild.innerHTML = ` Phase ${phaseIndex} <button class="add-phase">+</button><button class="delete-phase">X</button>`;
+            row.firstChild.innerHTML = ` Phase ${phaseIndex} <button class="add-phase">+</button>`;
             
             select.options[i-1].value = phaseIndex;
             select.options[i-1].text = phaseIndex;
@@ -693,11 +678,7 @@ function EditView(e, json, index){
     
   
  
-<<<<<<< HEAD
     
-=======
-  
->>>>>>> e79103a1a47404dd91606734cf0600f94236504b
 
   }
 
@@ -1112,7 +1093,7 @@ function displayList() {
                                                     views : viewconfig});
                  for(let i=1; i< config.length ; i++ )
                  {
-                  jsonCopy[1][index].stages.splice(i, 0, {name: config[i].name, 
+                  jsonCopy[1][index].stages.splice(i, 0, {name: config[0].name, 
                                                      Phases : [[jsonCopy[1][index].stages[i-1].Phases[0][1],addMonthsToDate(jsonCopy[1][index].stages[i-1].Phases[0][1], config[i].duration) ]],
                                                      views : viewconfig});
                  }

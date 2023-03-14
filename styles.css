@@ -29,7 +29,7 @@ table {
 	margin-top: 10px
   }
   
-  .sub-tasks-table {
+ .sub-tasks-table {
 	width: 100%;
 	margin-bottom: 20px 0;
 	margin-top: 10px;
@@ -62,6 +62,16 @@ table {
 }
 
 .FTE-table th{
+	width : auto;
+}
+
+.cash-out-table {
+	width: 100%;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.cash-out-table th{
 	width : auto;
 }
   
@@ -137,6 +147,7 @@ input[type="text"] {
 
 
 input[type="submit"] {
+	
 	padding: 10px 20px;
 	background-color: green;
 	color: white;
@@ -144,6 +155,7 @@ input[type="submit"] {
 	border: none;
 	font-size: 16px;
 	cursor: pointer;
+
   }
   
   a#download {
@@ -151,6 +163,7 @@ input[type="submit"] {
 	justify-content: center;
     align-items: center;
 	width: 50px;
+	height: 18px;
 	padding: 10px 20px;
 	background-color: green;
 	color: white;
@@ -159,8 +172,11 @@ input[type="submit"] {
 	font-size: 16px;
 	cursor: pointer;
 	text-decoration: none;
-	margin-top: 20px;
 	margin-bottom: 20px 0;
+	margin-top: 2px;
+	margin-left: 15px;
+
+	margin-right: 15px;
 	
   }
 
@@ -169,16 +185,20 @@ input[type="submit"] {
 	justify-content: center;
     align-items: center;
 	width: 50px;
+	height: 18px;
+
 	padding: 10px 20px;
-	background-color: green;
+	background-color: #156ebf;
 	color: white;
 	border-radius: 5px;
 	border: none;
 	font-size: 16px;
 	cursor: pointer;
 	text-decoration: none;
-	margin-top: 20px;
 	margin-bottom: 20px 0;
+	margin-top: 2px;
+
+	margin-right: 15px;
 	
   }
 
@@ -187,16 +207,21 @@ input[type="submit"] {
 	justify-content: center;
     align-items: center;
 	width: 50px;
+	height: 18px;
+
 	padding: 10px 20px;
-	background-color: green;
+	background-color: #156ebf;
 	color: white;
 	border-radius: 5px;
 	border: none;
 	font-size: 16px;
 	cursor: pointer;
 	text-decoration: none;
-	margin-top: 20px;
 	margin-bottom: 20px 0;
+	margin-top: 2px;
+
+	margin-right: 15px;
+
 	
   }
   a#gantt-button {
@@ -204,43 +229,49 @@ input[type="submit"] {
 	justify-content: center;
     align-items: center;
 	width: 50px;
+	height: 18px;
+
 	padding: 10px 20px;
-	background-color: green;
+	background-color: #156ebf;
 	color: white;
 	border-radius: 5px;
 	border: none;
 	font-size: 16px;
 	cursor: pointer;
 	text-decoration: none;
-	margin-top: 20px;
 	margin-bottom: 20px 0;
-	
+	margin-top: 2px;
+
+	margin-right: 15px;
+
   }
 
   a#CashOut {
 	display: flex;
 	justify-content: center;
     align-items: center;
-	width: 50px;
+	width: 60px;
+	height: 18px;
+
 	padding: 10px 20px;
-	background-color: green;
+	background-color: #156ebf;
 	color: white;
 	border-radius: 5px;
 	border: none;
 	font-size: 16px;
 	cursor: pointer;
 	text-decoration: none;
-	margin-top: 20px;
 	margin-bottom: 20px 0;
+	margin-top: 2px;
+
 	
   }
-
-  #download, #TJM {
-	float: left;
-	margin-right: 10px; /* optional, adds space between the links */
-	margin-bottom: 20px;
-
+  #boutons{
+	display: flex;
+	flex-direction: row;
+	/*justify-content: space-between;*/
   }
+ 
 
   
   
