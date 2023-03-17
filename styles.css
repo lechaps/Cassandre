@@ -55,15 +55,72 @@ table {
 	width : 13%;
 }
 
+.FTE-table-container {
+	width: auto;
+	overflow-x: auto;
+	margin-bottom: 20px;
+  }
+
+
 .FTE-table {
-	width: 100%;
+	width: auto;
 	margin-bottom: 20px 0;
 	margin-top: 10px;
 }
 
-.FTE-table th{
-	width : auto;
+.FTE-table thead th {
+	width: auto;
+  }
+  
+  .FTE-table tbody td {
+	width: auto;
+  }
+
+  .FTEperproject-table-container {
+	width: auto;
+	overflow-x: auto;
+	margin-bottom: 20px;
+  }
+
+
+.FTEperproject-table {
+	width: auto;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
 }
+
+.FTEperproject-table thead th {
+	width: auto;
+  }
+  
+  .FTEperproject-table tbody td {
+	width: auto;
+  }
+
+
+  .cashoutperproject-table-container {
+	width: auto;
+	overflow-x: auto;
+	margin-bottom: 20px;
+  }
+
+
+.cashoutperproject-table {
+	width: auto;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.cashoutperproject-table thead th {
+	width: auto;
+  }
+  
+  .cashoutperproject-table tbody td {
+	width: auto;
+  }
+
+
+
 
 .cash-out-table {
 	width: 100%;
@@ -73,8 +130,6 @@ table {
 
 .cash-out-table th{
 	width : auto;
-	background-color: #f2f2f2;
-	margin-top: 10px
 }
   
 input[type="text"] {
@@ -119,6 +174,24 @@ input[type="text"] {
 	margin-left: 10px;
 }
 
+.add-phase {
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.delete-phase {
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
 .delete-project-btn {
 	background-color: #ddd;
 	border: none;
@@ -149,7 +222,6 @@ input[type="text"] {
 
 
 input[type="submit"] {
-	
 	padding: 10px 20px;
 	background-color: green;
 	color: white;
@@ -157,7 +229,6 @@ input[type="submit"] {
 	border: none;
 	font-size: 16px;
 	cursor: pointer;
-
   }
   
   a#download {
@@ -311,9 +382,6 @@ input[type="submit"] {
 .main-task .bar-progress {
     fill: red !important;
 }
-
-
-
 
 
 

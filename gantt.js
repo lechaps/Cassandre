@@ -93,6 +93,7 @@ return resultYear + '-' + resultMonth
 
 }
 
+
 document.getElementById("gantt-button").addEventListener("click", function() {
   //var ganttContainer = document.getElementById("gantt");
   //ganttContainer.innerHTML = ""; // clear any previous content
@@ -138,7 +139,7 @@ document.getElementById("gantt-button").addEventListener("click", function() {
 
     // Créer l'élément p pour le texte
     let p = document.createElement("p");
-    p.textContent = "Change Chart Timescale";
+    p.textContent = "Configure Chart";
 
     // Créer l'élément div pour les boutons
     let buttonContDiv = document.createElement("div");
@@ -154,15 +155,18 @@ document.getElementById("gantt-button").addEventListener("click", function() {
     monthBtn.id = "month-btn";
     monthBtn.textContent = "Month";
 
-  // Créer le bouton "Day"
-    let dayBtn = document.createElement("button");
-    dayBtn.id = "day-btn";
-    dayBtn.textContent = "Day";
+     // Créer le bouton "Clear"
+     let clearBtn = document.createElement("button");
+     clearBtn.id = "cleargantt";
+     clearBtn.textContent = "Clear";
+
+ 
 
 // Ajouter les boutons à l'élément div "button-cont"
     buttonContDiv.appendChild(yearBtn);
     buttonContDiv.appendChild(monthBtn);
-    buttonContDiv.appendChild(dayBtn);
+    buttonContDiv.appendChild(clearBtn);
+
 
 // Ajouter les éléments "p" et "button-cont" à l'élément "chartControlsDiv"
   chartControlsDiv.appendChild(p);
@@ -181,7 +185,7 @@ document.getElementById("gantt-button").addEventListener("click", function() {
     header_height: 50,
     column_width: 10,
     step: 24,
-    view_mode: 'Month',
+    view_mode: 'Year',
     bar_height: 20,
     bar_corner_radius: 3,
     arrow_curve: 5,
@@ -254,9 +258,15 @@ document.getElementById("gantt-button").addEventListener("click", function() {
   document.querySelector(".chart-controls #month-btn").addEventListener("click", () => {
     gantt.change_view_mode("Month");
 })
-document.querySelector(".chart-controls #day-btn").addEventListener("click", () => {
-  gantt.change_view_mode("Day");
+document.querySelector(".chart-controls #cleargantt").addEventListener("click", () => {
+
+  let gantt = document.querySelector('#gantt')
+  let chartControls = document.querySelector('.chart-controls');
+    gantt.remove()
+    chartControls.remove()
+  
 })
+
   }
 
    

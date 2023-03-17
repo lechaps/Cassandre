@@ -150,6 +150,7 @@ function generateSubTaskTable(index, subTaskIndex, json) {
     <thead>
       <tr>
         <th>${json[1][index].stages[subTaskIndex].name}</th>
+        <th>Commentaire</th>
         <th>Somme</th>
         ${profils.map((profil) => {
           return `<th>${profil}</th>`;
@@ -161,6 +162,7 @@ function generateSubTaskTable(index, subTaskIndex, json) {
         return `
           <tr>
             <td>${view}</td>
+            <td><input type="text" class="commentaire" value="${subTaskData.views.find(v => v.name === view).commentary}"></td>
             <td><span class="somme" id="enddatepicker">0</span></td>
             ${profils.map((profil) => {
               let value = subTaskData.views.find(v => v.name === view).profils[profil];
@@ -240,6 +242,17 @@ function EditTJM(json){
       table.innerHTML = tableHTML;
       document.body.appendChild(table);
 
+      // Create button element and set its style
+      const button = document.createElement('button');
+      button.textContent = 'Clear';
+      button.style.backgroundColor = 'red';
+      button.style.color = 'white';
+      button.style.padding = '10px';
+      button.style.borderRadius = '5px';
+      button.style.marginTop = '20px';
+      button.id = 'ClearTJM'
+      table.appendChild(button);
+
       table.addEventListener("input", function(e) {
         let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
         let profil = e.target.className;
@@ -247,6 +260,15 @@ function EditTJM(json){
         json[0][viewindex].profils[profil] = e.target.value;
        
       });
+
+       //add code for clear button
+       document.getElementById("ClearTJM").addEventListener("click", function() {
+        if(table)
+        {
+          table.remove();
+        }
+        });
+
   
  
     }
@@ -549,7 +571,7 @@ function EditStage(subTasksTableBody,evt,e, json, index){
       header_height: 50,
       column_width: 10,
       step: 24,
-      view_mode: 'Month',
+      view_mode: 'Year',
       bar_height: 20,
       bar_corner_radius: 3,
       arrow_curve: 5,
@@ -622,9 +644,7 @@ function EditStage(subTasksTableBody,evt,e, json, index){
     document.querySelector(".chart-controls #month-btn").addEventListener("click", () => {
       gantt.change_view_mode("Month");
   })
-  document.querySelector(".chart-controls #day-btn").addEventListener("click", () => {
-    gantt.change_view_mode("Day");
-})
+  
     }
 
 
@@ -667,6 +687,8 @@ function EditView(e, json, index){
           });
 
       table.addEventListener("input", function(e) {
+        if (!e.target.classList.contains("commentaire"))
+        {
         let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
         let profil = e.target.className;
         console.log("the view index is : ", viewindex);
@@ -681,6 +703,14 @@ function EditView(e, json, index){
         //display the somme
         let sum = e.target.parentNode.parentNode.querySelector('.somme');
         sum.textContent = somme;
+      }
+
+      else{
+        let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
+
+        json[1][index].stages[subTaskIndex].views[viewindex].commentary = e.target.value;
+
+      }
        
       });
 
@@ -707,6 +737,27 @@ function EditView(e, json, index){
       phasestable.innerHTML = tableHTML2;
       document.body.appendChild(phasestable);
       document.body.appendChild(table);
+
+      // Create button element and set its style
+      const button = document.createElement('button');
+      button.textContent = 'Clear';
+      button.style.backgroundColor = 'red';
+      button.style.color = 'white';
+      button.style.padding = '10px';
+      button.style.borderRadius = '5px';
+      button.style.marginTop = '20px';
+      button.id = 'Clearview'
+      table.appendChild(button);
+
+      //add code for clear button
+      document.getElementById("Clearview").addEventListener("click", function() {
+        if(phasestable && table)
+        {
+          phasestable.remove();
+          table.remove();
+        }
+        });
+
 
       // Insert the subtask table after the phases table
       phasestable.insertAdjacentElement('afterend', table);
@@ -925,6 +976,7 @@ function generateFTEtable(json)
 
   // Crée une table vide pour stocker les données
   const tableData = {};
+  let fteData = {};
 
   //index of the current project
   let index = 0;
@@ -933,6 +985,7 @@ function generateFTEtable(json)
   // Boucle sur tous les projets pour calculer les données du tableau
   projects.forEach((project) => {
   // Boucle sur les vues pour les projets
+  const projectdata ={};
   project.stages.forEach((stage) => {
     stage.views.forEach((view) => {
       const viewName = view.name;
@@ -941,11 +994,25 @@ function generateFTEtable(json)
       let yearMonth = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2);
       // Boucle sur les mois compris entre la date de début et la date de fin de chaque phase
       while (yearMonth <= endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2)) {
-        if (!tableData[viewName]) tableData[viewName] = {};
-        if (!tableData[viewName][yearMonth]) tableData[viewName][yearMonth] = 0;
+        if (!tableData[viewName]) {
+          tableData[viewName] = {};
+          
+        }
+        if (!projectdata[viewName]) {
+          projectdata[viewName] = {};
+        }
+        if (!tableData[viewName][yearMonth]) {
+          tableData[viewName][yearMonth] = 0;
+          
+        }
+        if (!projectdata[viewName][yearMonth]) {
+          projectdata[viewName][yearMonth] = 0;
+         
+        }
         // Calcule la somme de la charge de chaque profil pour chaque vue pour chaque mois
         Object.values(view.profils).forEach((charge) => {
           tableData[viewName][yearMonth] += charge * 4.33 / 20;
+          projectdata[viewName][yearMonth] += charge * 4.33 / 20;
         });
         // Passe au mois suivant
         const year = parseInt(yearMonth.split('-')[0]);
@@ -958,9 +1025,13 @@ function generateFTEtable(json)
       }
      });
   });
+  // Add the table data to fteData object with the project name as key
+  fteData[project.name] = projectdata;
 });
 
 console.log("fte", tableData);
+console.log("fte by project ", fteData);
+
 
 // Create table element
 const table = document.createElement('table');
@@ -969,9 +1040,11 @@ table.classList.add('FTE-table');
 // Create thead element and add header row to table
 const thead = document.createElement('thead');
 const headerRow = thead.insertRow();
-headerRow.insertCell().textContent = '';
+const th = document.createElement('th');
+th.textContent = 'Total FTE';
+headerRow.appendChild(th);
 for (let year = parseInt(getStart(json).split('-')[0]); year <= parseInt(getEnd(json).split('-')[0]); year++) {
-  for (let month = 1; month <= 12; month+=2) {
+  for (let month = 1; month <= 12; month+=1) {
     const yearMonth = year + '-' + ('0' + month).slice(-2);
     const th = document.createElement('th');
     th.textContent = yearMonth;
@@ -988,7 +1061,7 @@ Object.entries(tableData).forEach(([viewName, viewData]) => {
   td1.textContent = viewName;
   row.appendChild(td1);
   for (let year = parseInt(getStart(json).split('-')[0]); year <= parseInt(getEnd(json).split('-')[0]); year++) {
-    for (let month = 1; month <= 12; month+=2) {
+    for (let month = 1; month <= 12; month+=1) {
       const yearMonth = year + '-' + ('0' + month).slice(-2);
       const td = document.createElement('td');
       td.textContent = (viewData[yearMonth] || 0).toFixed(2);
@@ -999,10 +1072,179 @@ Object.entries(tableData).forEach(([viewName, viewData]) => {
 
 table.appendChild(tbody);
 
+// Create a div element to wrap the table and enable horizontal scrolling
+const tableWrapper = document.createElement('div');
+tableWrapper.style.width = '100%';
+tableWrapper.style.overflowX = 'scroll';
+tableWrapper.appendChild(table);
+
+// Create a container for the buttons
+const buttonContainer = document.createElement('div');
+buttonContainer.style.display = 'flex';
+
+
+// Create button element and set its style
+const button = document.createElement('button');
+button.textContent = 'Details';
+button.style.backgroundColor = 'blue';
+button.style.color = 'white';
+button.style.padding = '10px';
+button.style.borderRadius = '5px';
+button.style.marginTop = '20px';
+button.style.marginRight = '10px'; // add margin-right
+
+button.id = 'details'
+
+// Create button element and set its style
+const button2 = document.createElement('button');
+button2.textContent = 'Clear';
+button2.style.backgroundColor = 'red';
+button2.style.color = 'white';
+button2.style.padding = '10px';
+button2.style.borderRadius = '5px';
+button2.style.marginTop = '20px';
+button2.style.right = '20px';
+
+
+button2.id = 'ClearFTE';
+
+// Add the buttons to the container element
+buttonContainer.appendChild(button);
+buttonContainer.appendChild(button2);
+
+// Add the container element to the table
+table.appendChild(buttonContainer);
 
 
   return table.outerHTML;
 }
+
+
+function generateFteperproject(json) {
+  let projects = json[1];
+
+  // Crée une table vide pour stocker les données
+  const tableData = {};
+  let fteData = {};
+
+  //index of the current project
+  let index = 0;
+
+
+  // Boucle sur tous les projets pour calculer les données du tableau
+  projects.forEach((project) => {
+  // Boucle sur les vues pour les projets
+  const projectdata ={};
+  project.stages.forEach((stage) => {
+    stage.views.forEach((view) => {
+      const viewName = view.name;
+      const startDate = new Date(stage.Phases[0][0]);
+      const endDate = new Date(stage.Phases[stage.Phases.length - 1][1]);
+      let yearMonth = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2);
+      // Boucle sur les mois compris entre la date de début et la date de fin de chaque phase
+      while (yearMonth <= endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2)) {
+        if (!tableData[viewName]) {
+          tableData[viewName] = {};
+          
+        }
+        if (!projectdata[viewName]) {
+          projectdata[viewName] = {};
+        }
+        if (!tableData[viewName][yearMonth]) {
+          tableData[viewName][yearMonth] = 0;
+          
+        }
+        if (!projectdata[viewName][yearMonth]) {
+          projectdata[viewName][yearMonth] = 0;
+         
+        }
+        // Calcule la somme de la charge de chaque profil pour chaque vue pour chaque mois
+        Object.values(view.profils).forEach((charge) => {
+          tableData[viewName][yearMonth] += charge * 4.33 / 20;
+          projectdata[viewName][yearMonth] += charge * 4.33 / 20;
+        });
+        // Passe au mois suivant
+        const year = parseInt(yearMonth.split('-')[0]);
+        const month = parseInt(yearMonth.split('-')[1]) + 1;
+        if (month > 12) {
+          yearMonth = (year + 1) + '-01';
+        } else {
+          yearMonth = year + '-' + ('0' + month).slice(-2);
+        }
+      }
+     });
+  });
+  // Add the table data to fteData object with the project name as key
+  fteData[project.name] = projectdata;
+});
+
+console.log("fte", tableData);
+console.log("fte by project ", fteData);
+
+  // Create table element
+  const table = document.createElement('table');
+  table.classList.add('FTEperproject-table');
+
+  // Loop through each project
+  projects.forEach((project) => {
+    // Create thead element and add header row to table for project
+    const thead = document.createElement('thead');
+    const headerRow = thead.insertRow();
+    const th = document.createElement('th');
+    th.textContent = `FTE-TABLE : ${project.name}`;
+    headerRow.appendChild(th);
+    for (let year = parseInt(getStart(json).split('-')[0]); year <= parseInt(getEnd(json).split('-')[0]); year++) {
+      for (let month = 1; month <= 12; month+=1) {
+        const yearMonth = year + '-' + ('0' + month).slice(-2);
+        const th = document.createElement('th');
+        th.textContent = yearMonth;
+        headerRow.appendChild(th);
+      }
+    }
+    table.appendChild(thead);
+
+    // Create tbody element and add data rows to table for project
+    const tbody = document.createElement('tbody');
+    Object.entries(fteData[project.name]).forEach(([viewName, viewData]) => {
+      const row = tbody.insertRow();
+      const td1 = document.createElement('td');
+      td1.textContent = viewName;
+      row.appendChild(td1);
+      for (let year = parseInt(getStart(json).split('-')[0]); year <= parseInt(getEnd(json).split('-')[0]); year++) {
+        for (let month = 1; month <= 12; month+=1) {
+          const yearMonth = year + '-' + ('0' + month).slice(-2);
+          const td = document.createElement('td');
+          td.textContent = (viewData[yearMonth] || 0).toFixed(2);
+          row.appendChild(td);
+        }
+      }
+    });
+    table.appendChild(tbody);
+    // Create a div element to wrap the table and enable horizontal scrolling
+    const tableWrapper = document.createElement('div');
+    tableWrapper.style.width = '100%';
+    tableWrapper.style.overflowX = 'scroll';
+    tableWrapper.appendChild(table);
+
+  });
+
+  // Create button element and set its style
+const button2 = document.createElement('button');
+button2.textContent = 'Clear';
+button2.style.backgroundColor = 'red';
+button2.style.color = 'white';
+button2.style.padding = '10px';
+button2.style.borderRadius = '5px';
+button2.style.marginTop = '20px';
+button2.style.right = '20px';
+
+button2.id = 'ClearFTEperproject';
+table.appendChild(button2);
+
+  return table.outerHTML;
+}
+
+
 
 function getProfilValue(json, viewName, profilName) {
   for (let i=0; i<json[0].length ; i++)
@@ -1022,9 +1264,11 @@ function generateCashOuttable(json)
 
   // Crée une table vide pour stocker les données
   const tableData = {};
+  const CashoutData = {};
 
   // Boucle sur tous les projets pour calculer les données du tableau
   projects.forEach((project) => {
+    const projectdata={};
   // Boucle sur les vues pour les projets
   project.stages.forEach((stage) => {
     stage.views.forEach((view) => {
@@ -1035,16 +1279,21 @@ function generateCashOuttable(json)
       // Boucle sur les mois compris entre la date de début et la date de fin de chaque phase
       while (yearMonth <= endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2)) {
         if (!tableData[viewName]) tableData[viewName] = {};
+        if (!projectdata[viewName]) projectdata[viewName] = {};
          // Calculate the total cash out for each fiscal year
          const year = parseInt(yearMonth.split('-')[0]);
          const month = parseInt(yearMonth.split('-')[1]);
          const fiscalYear = (month >= 7) ? year + '-' + (year + 1).toString().substr(-2) : (year - 1) + '-' + year.toString().substr(-2);
          if (!tableData[viewName][fiscalYear]) tableData[viewName][fiscalYear] = 0;
+         if (!projectdata[viewName][fiscalYear]) projectdata[viewName][fiscalYear] = 0;
+
          Object.entries(view.profils).forEach(([profil, charge]) => {
            // Get the TJM for each profile and multiply it by the FTE for each month
            const tjm = getProfilValue(json, viewName, profil);
            const fte = charge * 4.33 / 20;
            tableData[viewName][fiscalYear] += tjm * fte;
+           projectdata[viewName][fiscalYear] += tjm * fte;
+
          });
 
 
@@ -1060,37 +1309,206 @@ function generateCashOuttable(json)
       }
      });
   });
+
+  CashoutData[project.name] = projectdata;
+
 });
 
 console.log("cashout", tableData);
+console.log("cashout per project", CashoutData);
+
 
     // Create table element
     const table = document.createElement('table');
     table.classList.add('cash-out-table');
 
     // Create table header
-    const header = table.createTHead();
+    const header = document.createElement('thead');
     const headerRow = header.insertRow();
-    headerRow.insertCell().textContent = 'View';
+    const th = document.createElement('th');
+      th.textContent = 'Total Cashout';
+      headerRow.appendChild(th);
     Object.keys(tableData[Object.keys(tableData)[0]]).forEach((fiscalYear) => {
-      headerRow.insertCell().textContent = fiscalYear;
+      const th = document.createElement('th');
+      th.textContent = fiscalYear;
+      headerRow.appendChild(th);
   });
-    
+
+   table.appendChild(header);   
 
 // Create table body
-    const body = table.createTBody();
+    const body = document.createElement('tbody');
     Object.entries(tableData).forEach(([viewName, viewData]) => {
     const row = body.insertRow();
-    row.insertCell().textContent = viewName;
+    const td1 = document.createElement('td');
+    td1.textContent = viewName;
+    row.appendChild(td1);
     Object.values(viewData).forEach((cashOut) => {
-    const cell = row.insertCell();
-    cell.textContent = cashOut.toFixed(2);
+      const td = document.createElement('td');
+      td.textContent = cashOut.toFixed(2);
+      row.appendChild(td);
+
 });
 });
 
+table.appendChild(body);
+
+// Create a div element to wrap the table and enable horizontal scrolling
+const tableWrapper = document.createElement('div');
+tableWrapper.style.width = '100%';
+tableWrapper.style.overflowX = 'scroll';
+tableWrapper.appendChild(table);
+
+// Create button element and set its style
+const button = document.createElement('button');
+button.textContent = 'Details';
+button.style.backgroundColor = 'blue';
+button.style.color = 'white';
+button.style.padding = '10px';
+button.style.borderRadius = '5px';
+button.style.marginTop = '20px';
+button.style.marginRight = '10px'; // add margin-right
+button.id = 'cashoutdetails'
+table.appendChild(button);
+
+// Create button element and set its style
+const button2 = document.createElement('button');
+button2.textContent = 'Clear';
+button2.style.backgroundColor = 'red';
+button2.style.color = 'white';
+button2.style.padding = '10px';
+button2.style.borderRadius = '5px';
+button2.style.marginTop = '20px';
+button2.style.right = '20px';
+
+button2.id = 'Clearcashout';
+table.appendChild(button2);
 
 
 return table.outerHTML;
+}
+
+function generateCashoutperproject(json)
+{
+
+  let projects = json[1];
+
+  // Crée une table vide pour stocker les données
+  const tableData = {};
+  const CashoutData = {};
+
+  // Boucle sur tous les projets pour calculer les données du tableau
+  projects.forEach((project) => {
+    const projectdata={};
+  // Boucle sur les vues pour les projets
+  project.stages.forEach((stage) => {
+    stage.views.forEach((view) => {
+      const viewName = view.name;
+      const startDate = new Date(stage.Phases[0][0]);
+      const endDate = new Date(stage.Phases[stage.Phases.length - 1][1]);
+      let yearMonth = startDate.getFullYear() + '-' + ('0' + (startDate.getMonth() + 1)).slice(-2);
+      // Boucle sur les mois compris entre la date de début et la date de fin de chaque phase
+      while (yearMonth <= endDate.getFullYear() + '-' + ('0' + (endDate.getMonth() + 1)).slice(-2)) {
+        if (!tableData[viewName]) tableData[viewName] = {};
+        if (!projectdata[viewName]) projectdata[viewName] = {};
+         // Calculate the total cash out for each fiscal year
+         const year = parseInt(yearMonth.split('-')[0]);
+         const month = parseInt(yearMonth.split('-')[1]);
+         const fiscalYear = (month >= 7) ? year + '-' + (year + 1).toString().substr(-2) : (year - 1) + '-' + year.toString().substr(-2);
+         if (!tableData[viewName][fiscalYear]) tableData[viewName][fiscalYear] = 0;
+         if (!projectdata[viewName][fiscalYear]) projectdata[viewName][fiscalYear] = 0;
+
+         Object.entries(view.profils).forEach(([profil, charge]) => {
+           // Get the TJM for each profile and multiply it by the FTE for each month
+           const tjm = getProfilValue(json, viewName, profil);
+           const fte = charge * 4.33 / 20;
+           tableData[viewName][fiscalYear] += tjm * fte;
+           projectdata[viewName][fiscalYear] += tjm * fte;
+
+         });
+
+
+         // Passe au mois suivant
+         const nextyear = parseInt(yearMonth.split('-')[0]);
+         const nextmonth = parseInt(yearMonth.split('-')[1]) + 1;
+         if (nextmonth > 12) {
+           yearMonth = (nextyear + 1) + '-01';
+         } else {
+           yearMonth = nextyear + '-' + ('0' + nextmonth).slice(-2);
+         }    
+        
+      }
+     });
+  });
+
+  CashoutData[project.name] = projectdata;
+
+});
+
+console.log("cashout", tableData);
+console.log("kjlkcashout per project", CashoutData);
+  
+  // Create table element
+  const table = document.createElement('table');
+  table.classList.add('cashoutperproject-table');
+
+  // Loop through each project
+  projects.forEach((project) => {
+   
+
+   // Create table header
+   const header = document.createElement('thead');
+   const headerRow = header.insertRow();
+   const th = document.createElement('th');
+  th.textContent = `CashOut for : ${project.name}`;
+  headerRow.appendChild(th);
+
+   Object.keys(tableData[Object.keys(tableData)[0]]).forEach((fiscalYear) => {
+     const th = document.createElement('th');
+     th.textContent = fiscalYear;
+     headerRow.appendChild(th);
+ });
+
+  table.appendChild(header); 
+
+  const body = document.createElement('tbody');
+  Object.entries(CashoutData[project.name]).forEach(([viewName, viewData]) => {
+  const row = body.insertRow();
+  const td1 = document.createElement('td');
+  td1.textContent = viewName;
+  row.appendChild(td1);
+  Object.values(viewData).forEach((cashOut) => {
+    const td = document.createElement('td');
+    td.textContent = cashOut.toFixed(2);
+    row.appendChild(td);
+
+});
+});
+
+   table.appendChild(body);
+
+    // Create a div element to wrap the table and enable horizontal scrolling
+    const tableWrapper = document.createElement('div');
+    tableWrapper.style.width = '100%';
+    tableWrapper.style.overflowX = 'scroll';
+    tableWrapper.appendChild(table);
+
+  });
+
+   // Create button element and set its style
+const button2 = document.createElement('button');
+button2.textContent = 'Clear';
+button2.style.backgroundColor = 'red';
+button2.style.color = 'white';
+button2.style.padding = '10px';
+button2.style.borderRadius = '5px';
+button2.style.marginTop = '20px';
+button2.style.right = '20px';
+
+button2.id = 'Clearcashoutperproject';
+table.appendChild(button2);
+
+  return table.outerHTML;
 }
 
 function EditFTE(json){
@@ -1107,7 +1525,43 @@ function EditFTE(json){
       table.classList.add("FTE-table");
       table.innerHTML = tableHTML;
       document.body.appendChild(table);
+ 
 
+      document.getElementById("details").addEventListener("click", function() {
+        let tableHTML = generateFteperproject(json);
+        let table2 = document.createElement('table');
+        table2.classList.add("FTEperproject-table");
+        table2.innerHTML = tableHTML;
+        document.body.appendChild(table2);
+        document.getElementById("ClearFTEperproject").addEventListener("click", function() {
+          if(table2)
+          {
+           
+            table2.remove();
+          }
+          });
+          document.getElementById("ClearFTE").addEventListener("click", function() {
+            if(table)
+            {
+             
+              table.remove();
+            }
+            });
+  
+
+        
+
+        });
+
+        document.getElementById("ClearFTE").addEventListener("click", function() {
+          if(table)
+          {
+           
+            table.remove();
+          }
+          });
+
+         
       
  
     }
@@ -1127,6 +1581,35 @@ function EditCashout(json){
       table.classList.add("cash-out-table");
       table.innerHTML = tableHTML;
       document.body.appendChild(table);
+      document.getElementById("cashoutdetails").addEventListener("click", function() {
+        let tableHTML = generateCashoutperproject(json);
+        let table2 = document.createElement('table');
+        table2.classList.add("cashoutperproject-table");
+        table2.innerHTML = tableHTML;
+        document.body.appendChild(table2);
+        document.getElementById("Clearcashoutperproject").addEventListener("click", function() {
+          if(table2)
+          {
+           
+            table2.remove();
+          }
+          });
+          document.getElementById("Clearcashout").addEventListener("click", function() {
+            if(table)
+            {
+             
+              table.remove();
+            }
+            });
+        });
+
+        document.getElementById("Clearcashout").addEventListener("click", function() {
+          if(table)
+          {
+           
+            table.remove();
+          }
+          });
 
       
  
@@ -1450,6 +1933,8 @@ document.querySelectorAll(".project-name").forEach((name, index) => {
 document.getElementById("download").addEventListener("click", function() {
 DownloadJson(json);
 });
+
+
 
 document.getElementById("TJM").addEventListener("click", function() {
   EditTJM(json);
