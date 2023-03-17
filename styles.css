@@ -73,6 +73,8 @@ table {
 
 .cash-out-table th{
 	width : auto;
+	background-color: #f2f2f2;
+	margin-top: 10px
 }
   
 input[type="text"] {
@@ -188,7 +190,7 @@ input[type="submit"] {
 	height: 18px;
 
 	padding: 10px 20px;
-	background-color: #156ebf;
+	background-color: #bf1515;
 	color: white;
 	border-radius: 5px;
 	border: none;

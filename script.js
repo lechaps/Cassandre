@@ -345,6 +345,8 @@ function AddStage(e, json, index, subTasksTableBody){
   <td class="Sub-task-container">
     <input type="text" class="Sub-task-name">
     <button class="add-subtask-btn">+</button>
+    <button class="delete-project-btn">X</button>
+
   </td>
   <td>
     <input type="text" class="stage-input-start-date" id="stagestartdatepicker">
@@ -361,9 +363,9 @@ function AddStage(e, json, index, subTasksTableBody){
   `;
   e.target.parentElement.parentElement.after(newRow);
   let parentIndex = Array.from(subTasksTableBody.children).indexOf(newRow);
-  console.log(parentIndex);
+  
   json[1][index].stages.splice(parentIndex, 0, {name: '', Phases : [["",""]], views : viewconfig });
-  reader.readAsText(new Blob([JSON.stringify(json)], { type: 'application/json' }));
+  
   flatpickr("#stagestartdatepicker", {allowInput:true, plugins: [
     new monthSelectPlugin({
       dateFormat: "Y-m", //defaults to "F Y"
@@ -378,7 +380,9 @@ function AddStage(e, json, index, subTasksTableBody){
       theme: "light" // defaults to "light"
     })
   ]});
+  
 }
+
 
 function DeleteStage(e, json, index, subTasksTableBody){
   
@@ -410,14 +414,13 @@ function EditStage(subTasksTableBody,evt,e, json, index){
       let data = json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][0] ;
 
       //let's get our duration
-      console.log("vhv", data.toString());
       let duration = getMonthsDuration(data.toString(), evt.target.value.toString());
-      console.log("ffff", duration);
 
-      //update the statrting date of the project
+      //update the statrting date of the project if it is the first phase of the first stage and all the other dates
+      if (subTaskIndex == 0 && (Number(select.value)-1) == 0)
+      {
       json[1][index].start_date = addMonthsToDate(json[1][index].start_date.toString(), duration)
       projectstart.value = json[1][index].start_date;
-      
 
       //update all the dates with this duration
       for (let i =0; i< json[1][index].stages.length; i++ ) 
@@ -439,9 +442,43 @@ function EditStage(subTasksTableBody,evt,e, json, index){
 
 
         }
+      
+      }
 
-        projectend.textContent = getEndDate(json, index);
-        // update display of subtask dates
+      else{
+
+        //update just the stage if the date is valid
+        const firstdate = new Date(json[1][index].stages[0].Phases[0][0]);
+        const inputdate = new Date(evt.target.value.toString())
+
+        if (inputdate.getTime() < firstdate.getTime())
+        {
+          console.log("date too small")
+        }
+
+        else{
+          if (json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][0]===""){
+            json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][0] = evt.target.value.toString()
+
+          }
+
+          else{
+           json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][0] = addMonthsToDate(json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][0].toString(), duration);
+           json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][1] = addMonthsToDate(json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][1].toString(), duration);
+           
+         }
+
+        }
+
+
+
+      }
+      
+
+      projectend.textContent = getEndDate(json, index);
+
+
+      // update display of subtask dates
       for (let i = 0; i < subTasksTableBody.rows.length; i++) {
         let row = subTasksTableBody.rows[i];
         let select = row.querySelector('.phases').value;
@@ -457,33 +494,42 @@ function EditStage(subTasksTableBody,evt,e, json, index){
       let data = json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][1];
       //let's get our duration
       let duration = getMonthsDuration(data.toString(), evt.target.value.toString());
-      console.log("ffff", duration);
 
-      //update the statrting date of the project
-      json[1][index].start_date = addMonthsToDate(json[1][index].start_date.toString(), duration);
-      projectstart.value = json[1][index].start_date;
+      //the end date should be bigger than the start date of the phase 
+      const firstdate = new Date(json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][0]);
+      const inputdate = new Date(evt.target.value.toString());
+
+      if (inputdate.getTime() < firstdate.getTime())
+      {
+        console.log("date too small")
+      }
+
+      else{
+        if (json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][1]===""){
+          json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][1] = evt.target.value.toString()
+
+        }
+
+        else{
+         json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][1] = addMonthsToDate(json[1][index].stages[subTaskIndex].Phases[Number(select.value)-1][1].toString(), duration);
+         
+       }
+
+      }
+
       
+      
+      projectend.textContent = getEndDate(json, index);
 
-      //updae all the dates with this duration
-      for (let i =0; i< json[1][index].stages.length; i++ ) 
-        {
-         for (let j=0; j<json[1][index].stages[i].Phases.length; j++)
-         {
-          if (json[1][index].stages[i].Phases[j][1]===""){
-            json[1][index].stages[i].Phases[j][1] = evt.target.value.toString()
-
-          }
-
-          else{
-           json[1][index].stages[i].Phases[j][0] = addMonthsToDate(json[1][index].stages[i].Phases[j][0].toString(), duration);
-           json[1][index].stages[i].Phases[j][1] = addMonthsToDate(json[1][index].stages[i].Phases[j][1].toString(), duration);
-         }
-        }
-
-
-        }
-
-        projectend.textContent = getEndDate(json, index);
+      // update display of subtask dates
+      for (let i = 0; i < subTasksTableBody.rows.length; i++) {
+        let row = subTasksTableBody.rows[i];
+        let select = row.querySelector('.phases').value;
+        console.log("zaba", select);
+        row.cells[1].querySelector('.stage-input-start-date').value = json[1][index].stages[i].Phases[Number(select)-1][0];
+        row.cells[2].querySelector('.stage-input-end-date').value = json[1][index].stages[i].Phases[Number(select)-1][1] ;
+        
+      }
         
       
     }
@@ -491,15 +537,107 @@ function EditStage(subTasksTableBody,evt,e, json, index){
       json[1][index].stages[subTaskIndex].name = evt.target.value;
 
     }
+
+    //update the gantt 
+    let gantt = document.querySelector('#gantt')
+
+    if (gantt)
+    {
+    console.log("gantt should be updated !!")
+
+    gantt = new Gantt("#gantt", convertData(json), {
+      header_height: 50,
+      column_width: 10,
+      step: 24,
+      view_mode: 'Month',
+      bar_height: 20,
+      bar_corner_radius: 3,
+      arrow_curve: 5,
+      padding: 18,
+      date_format: 'YYYY-MM',
+      language: 'en', // or 'fr'
+      custom_popup_html: null,
+
+      on_click: function (task) {
+      },
+
+      on_date_change: function(task, start, end) {
+
+        if (task.id.includes('Task')){
+          let projectindex = task.location[0];
+          json[1][projectindex].start_date = convertDate(start);
+          json[1][projectindex].end_date = convertDate(end);
+
+          let startProject = document.querySelectorAll(".date-input-start-date");
+          let endProject = document.querySelectorAll(".date-input-end-date");
+
+          startProject[projectindex].value = convertDate(start);
+          endProject[projectindex].textContent = convertDate(end);
+           
+        }
+
+        else{
+          let projectindex = task.location[0];
+          let satgeindex = task.location[1];
+          let phaseindex = task.location[2];
+          let totallength = 0;
+          json[1][projectindex].stages[satgeindex].Phases[phaseindex][0] = convertDate(start);
+          json[1][projectindex].stages[satgeindex].Phases[phaseindex][1] = convertDate(end);
+
+          for(let i=0; i< projectindex; i++)
+          {
+            totallength += json[1][projectindex].stages.length();
+          }
+
+
+          let startStage = document.querySelectorAll(".stage-input-start-date");
+          let endStage  = document.querySelectorAll(".stage-input-end-date");
+          let phase = document.querySelectorAll(".phases");
+          
+
+          if (Number(phase[satgeindex + totallength].value) == phaseindex + 1)
+          {
+
+            startStage[satgeindex + totallength].value = convertDate(start);
+            endStage[satgeindex + totallength].value = convertDate(end);
+
+
+          }
+
+        }  
+
+      },
+
+      on_view_change: function(mode) {
+        console.log(mode);
+      }
+
+    });
+
+    
+
+    document.querySelector(".chart-controls #year-btn").addEventListener("click", () => {
+      gantt.change_view_mode("Year");
+  })
+    document.querySelector(".chart-controls #month-btn").addEventListener("click", () => {
+      gantt.change_view_mode("Month");
+  })
+  document.querySelector(".chart-controls #day-btn").addEventListener("click", () => {
+    gantt.change_view_mode("Day");
+})
+    }
+
+
+
+
+
+
     
   }
 }
 
 function EditView(e, json, index){
   if (e.target.classList.contains("Sub-task-name")) {
-
-    //editing the view table
-
 
     // Check if the views table already exists
     let table = document.body.querySelector(".sub-task-table");
@@ -516,14 +654,14 @@ function EditView(e, json, index){
       table = document.createElement('table');
       table.classList.add("sub-task-table");
       table.innerHTML = tableHTML;
-      document.body.appendChild(table);
+      
 
       let sumCells = table.querySelectorAll('.somme');
 
       json[1][index].stages[subTaskIndex].views.forEach((view, viewIndex) => {
       let sum = 0;
       for (const profile in view.profils) {
-          sum += parseInt(view.profils[profile]);
+          sum += parseFloat(view.profils[profile]);
           }
           sumCells[viewIndex].textContent = sum;
           });
@@ -537,7 +675,7 @@ function EditView(e, json, index){
         //calcul de somme
         let somme=0;
         for (const profile in json[1][index].stages[subTaskIndex].views[viewindex].profils){
-          somme += parseInt(json[1][index].stages[subTaskIndex].views[viewindex].profils[profile]);
+          somme += parseFloat(json[1][index].stages[subTaskIndex].views[viewindex].profils[profile]);
         }
 
         //display the somme
@@ -547,6 +685,10 @@ function EditView(e, json, index){
       });
 
     //editing the phasetable
+
+    
+
+    
   
 
     let phasestable = document.body.querySelector(".Phases-table");
@@ -564,44 +706,100 @@ function EditView(e, json, index){
       phasestable.classList.add("Phases-table");
       phasestable.innerHTML = tableHTML2;
       document.body.appendChild(phasestable);
+      document.body.appendChild(table);
 
-     
+      // Insert the subtask table after the phases table
+      phasestable.insertAdjacentElement('afterend', table);
+
+      flatpickr("#phasestartdatepicker", {allowInput:true, plugins: [
+        new monthSelectPlugin({
+          dateFormat: "Y-m", //defaults to "F Y"
+          theme: "light" // defaults to "light"
+        })
+      ]});
+      
+      flatpickr("#phaseenddatepicker", {allowInput:true, plugins: [
+        new monthSelectPlugin({
+        
+          dateFormat: "Y-m", //defaults to "F Y"
+          theme: "light" // defaults to "light"
+        })
+      ]});    
 
       
       phasestable.addEventListener("input", function(evt) {
+        console.log("ousss");
         let phaseindex = evt.target.parentNode.parentNode.rowIndex - 1;
         let date = evt.target.className;
         let j=1;
+        console.log("ggggg",date)
 
-        if (date === "start-phase" )
+        if (date.toString() == "start-phase flatpickr-input active" )
         {
           j = 0;
           let select = e.target.parentNode.parentNode.querySelector('.phases');
-          console.log("val",select.value);
-          console.log("val",phaseindex);
-        
-         
 
-          if (Number(phaseindex) === Number(select.value)){
-              console.log("ouuuuuuuus")
+          const firstdate = new Date(json[1][index].stages[0].Phases[0][0]);
+          const newdate = new Date(evt.target.value);
+
+          if (newdate.getTime() < firstdate.getTime())
+          {
+            alert("Warning : the date you entred is too small comparing to the starting date of the project");
+            evt.target.value = json[1][index].stages[subTaskIndex].Phases[phaseindex][0];
+          }
+
+          else{
+
+          
+
+          if (Number(phaseindex) === Number(select.value)-1){
               let row = e.target.parentNode.parentNode;
               let startDateInput = row.querySelector('.stage-input-start-date');
               startDateInput.value = evt.target.value;
 
-              let endDateInput = row.querySelector('.stage-input-end-date');
           }
-          
+
+          json[1][index].stages[subTaskIndex].Phases[phaseindex][0] = evt.target.value;
+        }  
 
         }
 
-        json[1][index].stages[subTaskIndex].Phases[phaseindex][j] = evt.target.value;
+        if (date === "end-phase flatpickr-input active" )
+        {
+          let select = e.target.parentNode.parentNode.querySelector('.phases');
+
+          const firstdate = new Date(json[1][index].stages[subTaskIndex].Phases[phaseindex][0]);
+          const newdate = new Date(evt.target.value);
+          console.log("phasa1",firstdate)
+          console.log("phasa2",newdate)
+
+
+          if (newdate.getTime() < firstdate.getTime())
+          {
+            alert("Warning : the date you entred is too small comparing to the starting date of this phase");
+            evt.target.value = json[1][index].stages[subTaskIndex].Phases[phaseindex][1];
+
+          }
+
+          else{
+    
+          if (Number(phaseindex) === Number(select.value)-1){
+              let row = e.target.parentNode.parentNode;
+              let endDateInput = row.querySelector('.stage-input-end-date');
+              endDateInput.value = evt.target.value;
+
+          }
+
+          json[1][index].stages[subTaskIndex].Phases[phaseindex][1] = evt.target.value;
+
+        }
+
+        }
+       
        
       });
 
       
-     
-
-
       phasestable.addEventListener("click", function(evt) {
         if (evt.target.classList.contains("add-phase")) {
           
@@ -611,11 +809,14 @@ function EditView(e, json, index){
           // Clone the current row to create the new row
           let newRow = currentRow.cloneNode(true);
           let newPhaseIndex = parseInt(newRow.firstChild.textContent.match(/\d+/)) + 1;
-          newRow.firstChild.innerHTML = `Phase ${newPhaseIndex} <button class="add-phase">+</button>`;
+          newRow.firstChild.innerHTML = `Phase ${newPhaseIndex} <button class="add-phase">+</button> <button class="delete-phase">X</button>`;
           newRow.children[1].firstChild.value = "";
           newRow.children[1].firstChild.id = `phasestartdatepicker`;
+          newRow.children[1].firstChild.class = `start-phase`;
           newRow.children[2].firstChild.value = "";
           newRow.children[2].firstChild.id = `phaseenddatepicker`;
+          newRow.children[2].firstChild.class = `end-phase`;
+
           currentRow.after(newRow);
       
           // Update the JSON data
@@ -634,30 +835,36 @@ function EditView(e, json, index){
 
           // Append the new option to the select element
           select.appendChild(newOption);
-          console.log("fff",newPhaseIndex);
 
           select.options[newPhaseIndex-1].value = newPhaseIndex;
           select.options[newPhaseIndex-1].text = newPhaseIndex;
-          console.log("index is", currentIndex);
-
-      
+     
           // Update the remaining rows
      
           for (let i = currentIndex + 2; i < phasestable.rows.length; i++) {
             let row = phasestable.rows[i];
             let phaseIndex = parseInt(row.firstChild.textContent.match(/\d+/)) + 1;
-            row.firstChild.innerHTML = ` Phase ${phaseIndex} <button class="add-phase">+</button>`;
+            row.firstChild.innerHTML = ` Phase ${phaseIndex} <button class="add-phase">+</button> <button class="delete-phase">X</button>`;
             
             select.options[i-1].value = phaseIndex;
             select.options[i-1].text = phaseIndex;
+
+          }    
+
+          flatpickr("#phasestartdatepicker", {allowInput:true, plugins: [
+            new monthSelectPlugin({
+              dateFormat: "Y-m", //defaults to "F Y"
+              theme: "light" // defaults to "light"
+            })
+          ]});
+          
+          flatpickr("#phaseenddatepicker", {allowInput:true, plugins: [
+            new monthSelectPlugin({
             
-
-
-          }
-
-          
-
-          
+              dateFormat: "Y-m", //defaults to "F Y"
+              theme: "light" // defaults to "light"
+            })
+          ]});      
         }
 
         if (evt.target.classList.contains("delete-phase"))
@@ -672,13 +879,10 @@ function EditView(e, json, index){
 
           currentRow.remove();
 
-        }
+        }     
+        
       });
-      
-    
-  
- 
-    
+   
 
   }
 
@@ -697,6 +901,7 @@ function EditView(e, json, index){
   });
 
   }
+  
 
 }
 
@@ -888,8 +1093,6 @@ console.log("cashout", tableData);
 return table.outerHTML;
 }
 
-
-
 function EditFTE(json){
   let table = document.body.querySelector(".FTE-table");
     if (table) {
@@ -932,7 +1135,9 @@ function EditCashout(json){
 
 const input = document.getElementById("file");
 let reader;
-let json
+let json;
+
+
 input.addEventListener("change", function(e) {
 const file = e.target.files[0];
 reader = new FileReader();
@@ -951,7 +1156,7 @@ function displayList() {
   let placeholder = document.querySelector("#data-output");
   let out = "", out2="", out3="";
   
-  json = JSON.parse(reader.result);
+  //json = JSON.parse(reader.result);
    json[1].forEach((element, index) => {
     out += `
     <tr>
@@ -999,6 +1204,7 @@ function displayList() {
         if (e.target.classList.contains("add-subtask-btn")) {
           
          AddStage(e ,json, index, subTasksTableBody);
+
         }
         if (e.target.classList.contains("delete-subtask-btn")) {
           
@@ -1014,6 +1220,8 @@ function displayList() {
       subTasksTableBody.addEventListener("click", function(e) {
         EditView(e, json, index);
       });  
+
+      
       
       flatpickr("#stagestartdatepicker", {allowInput:true, plugins: [
         new monthSelectPlugin({
@@ -1129,7 +1337,7 @@ function displayList() {
              let jsonCopy = JSON.parse(JSON.stringify(json));
       
              // Update the copy with the new date values
-             jsonCopy[index][1].end_date = date.value;
+             jsonCopy[1][index].end_date = date.value;
       
              // Update the original JSON object with the updated copy
              json = jsonCopy;
@@ -1146,7 +1354,7 @@ function displayList() {
              let jsonCopy = JSON.parse(JSON.stringify(json));
       
              // Update the copy with the new date values
-             jsonCopy[index][1].name = name.value;
+             jsonCopy[1][index].name = name.value;
       
              // Update the original JSON object with the updated copy
              json = jsonCopy;
