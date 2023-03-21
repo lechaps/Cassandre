@@ -71,10 +71,16 @@ table {
 .FTE-table thead th {
 	width: auto;
   }
+ 
   
   .FTE-table tbody td {
 	width: auto;
   }
+
+  .FTE-table thead td :first-child {
+	width: auto;
+  }
+  
 
   .FTEperproject-table-container {
 	width: auto;

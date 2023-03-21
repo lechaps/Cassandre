@@ -3,32 +3,32 @@
     {
       "view": "Bu Effort",
       "profils": {
-        "key User": "0",
-        "Business Analyst": "0",
-        "Application Developer": "0",
-        "Architect": "0",
-        "Project Manager": "0",
-        "Infrastructure": "0"
+        "key User": "120.23",
+        "Business Analyst": "100.21",
+        "Application Developer": "160.96",
+        "Architect": "70.25",
+        "Project Manager": "60.36",
+        "Infrastructure": "90.36"
       }
     },
     {
       "view": "Limagrain IT Effort",
       "profils": {
-        "key User": "0",
-        "Business Analyst": "0",
-        "Application Developer": "0",
-        "Architect": "0",
-        "Project Manager": "0",
-        "Infrastructure": "0"
+        "key User": "80.25",
+        "Business Analyst": "62.26",
+        "Application Developer": "100.23",
+        "Architect": "54.36",
+        "Project Manager": "45.36",
+        "Infrastructure": "45.32"
       }
     },
     {
       "view": "IT External Effort",
       "profils": {
-        "key User": "0",
-        "Business Analyst": "0",
-        "Application Developer": "0",
-        "Architect": "0",
+        "key User": "125.36",
+        "Business Analyst": "148.25",
+        "Application Developer": "125.36",
+        "Architect": "128.36",
         "Project Manager": "0",
         "Infrastructure": "0"
       }
@@ -58,7 +58,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -69,7 +70,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -80,7 +82,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -102,7 +105,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -113,7 +117,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -124,7 +129,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -146,7 +152,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -157,7 +164,8 @@
                 "Architect": "0.5",
                 "Project Manager": "1",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -168,7 +176,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -190,7 +199,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -201,7 +211,8 @@
                 "Architect": "0",
                 "Project Manager": "4",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -212,7 +223,8 @@
                 "Architect": "1.5",
                 "Project Manager": "3",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -234,7 +246,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -245,7 +258,8 @@
                 "Architect": "1",
                 "Project Manager": "2",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -256,7 +270,8 @@
                 "Architect": "0",
                 "Project Manager": "2",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -278,7 +293,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -289,7 +305,8 @@
                 "Architect": "0.5",
                 "Project Manager": "1",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -300,7 +317,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -322,7 +340,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -333,7 +352,8 @@
                 "Architect": "0.5",
                 "Project Manager": "1",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -344,7 +364,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -366,7 +387,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -377,7 +399,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -388,7 +411,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         }
@@ -417,7 +441,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -428,7 +453,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -439,7 +465,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -461,7 +488,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -472,7 +500,8 @@
                 "Architect": "0.5",
                 "Project Manager": "1",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -483,7 +512,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -505,7 +535,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -516,7 +547,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -527,7 +559,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -549,7 +582,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -560,7 +594,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -571,7 +606,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -593,7 +629,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -604,7 +641,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0.5",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -615,7 +653,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -637,7 +676,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -648,7 +688,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -659,7 +700,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -681,7 +723,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -692,7 +735,8 @@
                 "Architect": "0.5",
                 "Project Manager": "2",
                 "Infrastructure": "1"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -703,7 +747,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -725,7 +770,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -736,7 +782,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -747,7 +794,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         }
@@ -788,7 +836,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -799,7 +848,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -810,7 +860,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -844,7 +895,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -855,7 +907,8 @@
                 "Architect": "0.5",
                 "Project Manager": "1.0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -866,7 +919,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -888,7 +942,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -899,7 +954,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -910,7 +966,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -944,7 +1001,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -955,7 +1013,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -966,7 +1025,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1000,7 +1060,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1011,7 +1072,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1022,7 +1084,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1056,7 +1119,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1067,7 +1131,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1078,7 +1143,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1108,7 +1174,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1119,7 +1186,8 @@
                 "Architect": "0.5",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1130,7 +1198,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1152,7 +1221,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1163,7 +1233,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1174,7 +1245,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         }
@@ -1207,7 +1279,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1218,7 +1291,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1229,7 +1303,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1255,7 +1330,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1266,7 +1342,8 @@
                 "Architect": "1",
                 "Project Manager": "1.0",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1277,7 +1354,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1299,7 +1377,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1310,7 +1389,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1321,7 +1401,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1347,7 +1428,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1358,7 +1440,8 @@
                 "Architect": "0",
                 "Project Manager": "2",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1369,7 +1452,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1395,7 +1479,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1406,7 +1491,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1417,7 +1503,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1443,7 +1530,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1454,7 +1542,8 @@
                 "Architect": "0",
                 "Project Manager": "1.0",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1465,7 +1554,8 @@
                 "Architect": "0",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1487,7 +1577,8 @@
                 "Architect": "0",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1498,7 +1589,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0.5"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1509,7 +1601,8 @@
                 "Architect": "1",
                 "Project Manager": "1",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1531,7 +1624,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1542,7 +1636,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1553,7 +1648,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         }
@@ -1582,7 +1678,8 @@
                 "Architect": "0",
                 "Project Manager": "2",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1593,7 +1690,8 @@
                 "Architect": "2",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1604,7 +1702,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         }
@@ -1633,7 +1732,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1644,7 +1744,8 @@
                 "Architect": "1",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1655,7 +1756,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         }
@@ -1684,7 +1786,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1695,7 +1798,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1706,7 +1810,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1728,7 +1833,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1739,7 +1845,8 @@
                 "Architect": "1.5",
                 "Project Manager": "0.3",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1750,7 +1857,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1772,7 +1880,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1783,7 +1892,8 @@
                 "Architect": "1",
                 "Project Manager": "0.3",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1794,7 +1904,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1816,7 +1927,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1827,7 +1939,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0.5",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1838,7 +1951,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1860,7 +1974,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1871,7 +1986,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1882,7 +1998,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         },
@@ -1904,7 +2021,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "Limagrain IT Effort",
@@ -1915,7 +2033,8 @@
                 "Architect": "0.5",
                 "Project Manager": "0.3",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             },
             {
               "name": "IT External Effort",
@@ -1926,7 +2045,8 @@
                 "Architect": "0",
                 "Project Manager": "0",
                 "Infrastructure": "0"
-              }
+              },
+              "comment": "add a comment"
             }
           ]
         }

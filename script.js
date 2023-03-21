@@ -113,13 +113,12 @@ function getEnd(json){
 
 function getStart(json){
 
-  let min = new Date(json[1][0].stages[0].Phases[0][0])
+  let min = new Date(getStartDate(json, 0));
 
-  for (let i=0; i<json[1].length; i++)
+  for (let i=1; i<json[1].length; i++)
   {
-    for (let j=0; j<json[1][i].stages.length; j++)
-    {
-      let date = new Date(json[1][i].stages[j].Phases[0][0]);
+    
+      let date = new Date(getStartDate(json,i));
 
       if (date.getTime() < min.getTime())
       {
@@ -127,7 +126,7 @@ function getStart(json){
       }
 
 
-    }
+    
   }
 
   let resultMonth = (min.getMonth() + 1).toString().padStart(2, '0');
@@ -162,7 +161,7 @@ function generateSubTaskTable(index, subTaskIndex, json) {
         return `
           <tr>
             <td>${view}</td>
-            <td><input type="text" class="commentaire" value="${subTaskData.views.find(v => v.name === view).commentary}"></td>
+            <td><input type="text" class="commentaire" value="${subTaskData.views.find(v => v.name === view).comment}"></td>
             <td><span class="somme" id="enddatepicker">0</span></td>
             ${profils.map((profil) => {
               let value = subTaskData.views.find(v => v.name === view).profils[profil];
@@ -256,7 +255,6 @@ function EditTJM(json){
       table.addEventListener("input", function(e) {
         let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
         let profil = e.target.className;
-        console.log("the view index is : ", viewindex);
         json[0][viewindex].profils[profil] = e.target.value;
        
       });
@@ -290,9 +288,10 @@ function generateStagesTable(subTasksTable,subTasksTableBody, json, subTasksOut,
         let subTasksTableHeadRow = document.createElement("tr");
         subTasksTableHeadRow.innerHTML = `
         <th>Sub-task name</th>
+        <th>Phases</th>
         <th>Start date</th>
         <th>End date</th>
-        <th>Phases</th>
+        
           `;
         subTasksTableHead.appendChild(subTasksTableHeadRow);
         subTasksTable.appendChild(subTasksTableHead);
@@ -314,16 +313,17 @@ function generateStagesTable(subTasksTable,subTasksTableBody, json, subTasksOut,
           <button class="delete-subtask-btn">X</button>
         </td>
         <td>
+          <select class="phases" id="phasesmenu">
+              ${phasesmenu}
+          </select>
+        </td> 
+        <td>
           <input type="text" class="stage-input-start-date" id="stagestartdatepicker" data-index="${index}" value="${subTask.Phases[0][0]}">
         </td>
         <td>
           <input type="text" class="stage-input-end-date" id="stageenddatepicker" data-index="${index}" value="${subTask.Phases[0][1]}">
         </td>
-        <td>
-          <select class="phases" id="phasesmenu">
-              ${phasesmenu}
-          </select>
-        </td> 
+        
         </tr>
         `;
         phasesmenu = "";
@@ -371,17 +371,18 @@ function AddStage(e, json, index, subTasksTableBody){
 
   </td>
   <td>
-    <input type="text" class="stage-input-start-date" id="stagestartdatepicker">
-  </td>
-  <td>
-    <input type="text" class="stage-input-end-date" id="stagestartdatepicker">
-  </td>
-  <td>
     <select class="phases" id="phasesmenu">
       <option value=1>1</option>
              
     </select>
   </td> 
+  <td>
+    <input type="text" class="stage-input-start-date" id="stagestartdatepicker">
+  </td>
+  <td>
+    <input type="text" class="stage-input-end-date" id="stagestartdatepicker">
+  </td>
+  
   `;
   e.target.parentElement.parentElement.after(newRow);
   let parentIndex = Array.from(subTasksTableBody.children).indexOf(newRow);
@@ -420,13 +421,13 @@ function DeleteStage(e, json, index, subTasksTableBody){
   
 }
 
-function EditStage(subTasksTableBody,evt,e, json, index){
+function EditStage(subTasksTableBody,evt,e, json, index){0.
   if (evt.target.classList.contains("stage-input-start-date") || evt.target.classList.contains("stage-input-end-date") || evt.target.classList.contains("Sub-task-name")) {
     let subTaskIndex = evt.target.parentNode.parentNode.rowIndex - 1;
     let projectstart = e.target.parentNode.parentNode.querySelector('.date-input-start-date');
     let projectend = e.target.parentNode.parentNode.querySelector('.date-input-end-date');
     let rows = subTasksTableBody.rows;
-    console.log("zab", projectstart.value);
+    
 
     let select = evt.target.parentNode.parentNode.querySelector('.phases');
     
@@ -475,7 +476,7 @@ function EditStage(subTasksTableBody,evt,e, json, index){
 
         if (inputdate.getTime() < firstdate.getTime())
         {
-          console.log("date too small")
+          alert("date too small")
         }
 
         else{
@@ -504,9 +505,8 @@ function EditStage(subTasksTableBody,evt,e, json, index){
       for (let i = 0; i < subTasksTableBody.rows.length; i++) {
         let row = subTasksTableBody.rows[i];
         let select = row.querySelector('.phases').value;
-        console.log("zaba", select);
-        row.cells[1].querySelector('.stage-input-start-date').value = json[1][index].stages[i].Phases[Number(select)-1][0];
-        row.cells[2].querySelector('.stage-input-end-date').value = json[1][index].stages[i].Phases[Number(select)-1][1] ;
+        row.cells[2].querySelector('.stage-input-start-date').value = json[1][index].stages[i].Phases[Number(select)-1][0];
+        row.cells[3].querySelector('.stage-input-end-date').value = json[1][index].stages[i].Phases[Number(select)-1][1] ;
         
       }
 
@@ -523,7 +523,7 @@ function EditStage(subTasksTableBody,evt,e, json, index){
 
       if (inputdate.getTime() < firstdate.getTime())
       {
-        console.log("date too small")
+        alert("date too small")
       }
 
       else{
@@ -547,9 +547,8 @@ function EditStage(subTasksTableBody,evt,e, json, index){
       for (let i = 0; i < subTasksTableBody.rows.length; i++) {
         let row = subTasksTableBody.rows[i];
         let select = row.querySelector('.phases').value;
-        console.log("zaba", select);
-        row.cells[1].querySelector('.stage-input-start-date').value = json[1][index].stages[i].Phases[Number(select)-1][0];
-        row.cells[2].querySelector('.stage-input-end-date').value = json[1][index].stages[i].Phases[Number(select)-1][1] ;
+        row.cells[2].querySelector('.stage-input-start-date').value = json[1][index].stages[i].Phases[Number(select)-1][0];
+        row.cells[3].querySelector('.stage-input-end-date').value = json[1][index].stages[i].Phases[Number(select)-1][1] ;
         
       }
         
@@ -565,8 +564,7 @@ function EditStage(subTasksTableBody,evt,e, json, index){
 
     if (gantt)
     {
-    console.log("gantt should be updated !!")
-
+    
     gantt = new Gantt("#gantt", convertData(json), {
       header_height: 50,
       column_width: 10,
@@ -631,7 +629,7 @@ function EditStage(subTasksTableBody,evt,e, json, index){
       },
 
       on_view_change: function(mode) {
-        console.log(mode);
+        
       }
 
     });
@@ -669,7 +667,7 @@ function EditView(e, json, index){
     
 
       let subTaskIndex = e.target.parentNode.parentNode.rowIndex - 1;
-      console.log(index, subTaskIndex);
+      
       let tableHTML = generateSubTaskTable(index,subTaskIndex, json);
       table = document.createElement('table');
       table.classList.add("sub-task-table");
@@ -691,7 +689,6 @@ function EditView(e, json, index){
         {
         let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
         let profil = e.target.className;
-        console.log("the view index is : ", viewindex);
         json[1][index].stages[subTaskIndex].views[viewindex].profils[profil] = e.target.value;
 
         //calcul de somme
@@ -708,7 +705,7 @@ function EditView(e, json, index){
       else{
         let viewindex = e.target.parentNode.parentNode.rowIndex - 1;
 
-        json[1][index].stages[subTaskIndex].views[viewindex].commentary = e.target.value;
+        json[1][index].stages[subTaskIndex].views[viewindex].comment = e.target.value;
 
       }
        
@@ -716,11 +713,7 @@ function EditView(e, json, index){
 
     //editing the phasetable
 
-    
-
-    
   
-
     let phasestable = document.body.querySelector(".Phases-table");
     if (phasestable) {
             // Remove the sub-task table
@@ -779,11 +772,10 @@ function EditView(e, json, index){
 
       
       phasestable.addEventListener("input", function(evt) {
-        console.log("ousss");
         let phaseindex = evt.target.parentNode.parentNode.rowIndex - 1;
         let date = evt.target.className;
         let j=1;
-        console.log("ggggg",date)
+        
 
         if (date.toString() == "start-phase flatpickr-input active" )
         {
@@ -821,8 +813,7 @@ function EditView(e, json, index){
 
           const firstdate = new Date(json[1][index].stages[subTaskIndex].Phases[phaseindex][0]);
           const newdate = new Date(evt.target.value);
-          console.log("phasa1",firstdate)
-          console.log("phasa2",newdate)
+        
 
 
           if (newdate.getTime() < firstdate.getTime())
@@ -923,7 +914,7 @@ function EditView(e, json, index){
           let currentRow = evt.target.closest("tr");
           let currentIndex = Array.prototype.indexOf.call(currentRow.parentNode.children, currentRow);
 
-          console.log("delete", currentIndex-1);
+          
 
           // Update the JSON data
           json[1][index].stages[subTaskIndex].Phases.splice(currentIndex-1 , 1);
@@ -965,8 +956,6 @@ function deleteproject(e, index, json){
   const rowToDelete = e.target.parentElement.parentElement;
   rowToDelete.remove();
 
-  // Do something with the updated JSON object, such as sending it to a server or updating the UI
-  console.log(json);
   
 }
 
@@ -1029,8 +1018,7 @@ function generateFTEtable(json)
   fteData[project.name] = projectdata;
 });
 
-console.log("fte", tableData);
-console.log("fte by project ", fteData);
+
 
 
 // Create table element
@@ -1178,8 +1166,7 @@ function generateFteperproject(json) {
   fteData[project.name] = projectdata;
 });
 
-console.log("fte", tableData);
-console.log("fte by project ", fteData);
+
 
   // Create table element
   const table = document.createElement('table');
@@ -1191,7 +1178,7 @@ console.log("fte by project ", fteData);
     const thead = document.createElement('thead');
     const headerRow = thead.insertRow();
     const th = document.createElement('th');
-    th.textContent = `FTE-TABLE : ${project.name}`;
+    th.textContent = `${project.name}`;
     headerRow.appendChild(th);
     for (let year = parseInt(getStart(json).split('-')[0]); year <= parseInt(getEnd(json).split('-')[0]); year++) {
       for (let month = 1; month <= 12; month+=1) {
@@ -1314,8 +1301,7 @@ function generateCashOuttable(json)
 
 });
 
-console.log("cashout", tableData);
-console.log("cashout per project", CashoutData);
+
 
 
     // Create table element
@@ -1445,8 +1431,7 @@ function generateCashoutperproject(json)
 
 });
 
-console.log("cashout", tableData);
-console.log("kjlkcashout per project", CashoutData);
+
   
   // Create table element
   const table = document.createElement('table');
@@ -1726,7 +1711,6 @@ function displayList() {
 
     
       if (e.target.classList.contains("add-project-btn")) {
-        console.log("click!!!!!");
         let newRow = document.createElement("tr");
         newRow.innerHTML = `
         <td class="project-container">
@@ -1760,7 +1744,7 @@ function displayList() {
               })
           ]});
           
-        console.log(json);
+        
           date.addEventListener("input", function() {
               if (date.value)
               {
@@ -1770,15 +1754,12 @@ function displayList() {
       
                // Update the copy with the new date values
                jsonCopy[1][index].start_date = date.value;
-               console.log(date.value);
+               
 
 
                //remplir les satges à partir d'un script config
                if(jsonCopy[1][index].stages && jsonCopy[1][index].stages.length === 0){
-                console.log("ce projet est encore vide !!!!!!, je vais le remplit pour vous :)");
-                console.log(typeof(date.value));
-                console.log(addMonthsToDate(date.value.toString(), config[0].duration));
-      
+                
                 jsonCopy[1][index].stages.splice(0, 0, {name: config[0].name,
                                                      Phases : [[date.value.toString(),addMonthsToDate(date.value.toString(), config[0].duration) ]],
                                                     views : viewconfig});
@@ -1797,14 +1778,9 @@ function displayList() {
               // Update the original JSON object with the updated copy
               json = jsonCopy;
 
-              console.log("zab", getEndDate(json, index));
-
               endDateInput.textContent = getEndDate(json, index).toString();
        
-               
-       
-               // Do something with the updated JSON object, such as sending it to a server or updating the UI
-               console.log(json);
+
             }
 
       
@@ -1824,9 +1800,7 @@ function displayList() {
       
              // Update the original JSON object with the updated copy
              json = jsonCopy;
-      
-             // Do something with the updated JSON object, such as sending it to a server or updating the UI
-             console.log(json);
+    
       
         });
       });
@@ -1841,9 +1815,7 @@ function displayList() {
       
              // Update the original JSON object with the updated copy
              json = jsonCopy;
-      
-             // Do something with the updated JSON object, such as sending it to a server or updating the UI
-             console.log(json);
+
       
         });
       });
@@ -1868,7 +1840,7 @@ function displayList() {
 
       if (e.target.classList.contains("delete-project-btn"))
       {
-        console.log("oussama");
+    
         let index = e.target.parentNode.parentNode.rowIndex-1;
         deleteproject(e, index, json);
       }
@@ -1886,7 +1858,7 @@ document.querySelectorAll(".date-input-start-date").forEach((date, index) => {
 
          //let's get our duration
          let duration = getMonthsDuration(jsonCopy[1][index].start_date.toString(), date.value.toString());
-         console.log("ffff", duration);
+  
 
          //updae all the dates with this duration
          for (let i =0; i< json[1][index].stages.length; i++ ) 

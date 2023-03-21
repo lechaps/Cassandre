@@ -33,7 +33,9 @@ var viewconfig =  [
           "Project Manager" : "0",
           "Infrastructure" : "0"
       
-        } 
+        },
+        "commentary" : "add a comment"
+
   },
   {
        "name" : "Limagrain IT Effort",
@@ -46,7 +48,9 @@ var viewconfig =  [
         "Project Manager" : "0",
        "Infrastructure" : "0"
     
-      } 
+      },
+      "commentary" : "add a comment"
+
   },
   {
     "name" : "IT External Effort",
@@ -59,7 +63,9 @@ var viewconfig =  [
      "Project Manager" : "0",
     "Infrastructure" : "0"
  
-   } 
+   },
+   "commentary" : "add a comment"
+
   }
 
 
