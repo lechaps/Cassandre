@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZZ2 project</title>
+    <div id="boutons">
+        <div>
+            <label for="file">Select a JSON file:</label>
+            <input type="file" id="file" name="file" accept=".json">
+            <input type="submit" id="submitBtn" value="Submit">
+        </div>
+        <a href="#" id="download">Download</a>
+        <a href="#" id="TJM">TJM</a>
+        <a href="#" id="FTE">FTE</a>
+        <a href="#" id="gantt-button">Gantt</a>
+        <a href="#" id="CashOut">Cash Out</a>
+    </div>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.css"> 
+
+</head>
+<body>
+    <table>
+        <thead>
+           <tr>
+              <th>Project name</th>
+              <th>Starting date</th>
+              <th>end date</th>
+              
+           </tr>
+        </thead>
+        <tbody id="data-output">
+                
+        </tbody>
+    </table>
+
+
+    
+
+   
+
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/plugins/monthSelect/index.js"></script>
+    <script  src="config.js"></script>
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/frappe-gantt/dist/frappe-gantt.min.js"></script>
+    <script src="gantt.js"></script>
+    
+
+
+
+</body>
+</html>

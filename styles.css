@@ -1,0 +1,398 @@
+table {
+	font-family: Arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	table-layout: fixed;
+  	word-wrap: break-word;
+	margin-top: 20px;
+	margin-bottom: 20px 0;
+  }
+
+  th:first-child {
+    width: 50%;
+  }
+  th:nth-child(2),
+  th:nth-child(3),
+  th:nth-child(4){
+    width: 12.5%;
+  }
+  
+  th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: center;
+	
+  }
+  
+  th {
+	background-color: #f2f2f2;
+	margin-top: 10px
+  }
+  
+ .sub-tasks-table {
+	width: 100%;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.sub-task-table {
+	width: 100%;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.sub-task-table th{
+	width : 13%;
+}
+
+.TJM-table {
+	width: 100%;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.TJM-table th{
+	width : 13%;
+}
+
+.FTE-table-container {
+	width: auto;
+	overflow-x: auto;
+	margin-bottom: 20px;
+  }
+
+
+.FTE-table {
+	width: auto;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.FTE-table thead th {
+	width: auto;
+  }
+ 
+  
+  .FTE-table tbody td {
+	width: auto;
+  }
+
+  .FTE-table thead td :first-child {
+	width: auto;
+  }
+  
+
+  .FTEperproject-table-container {
+	width: auto;
+	overflow-x: auto;
+	margin-bottom: 20px;
+  }
+
+
+.FTEperproject-table {
+	width: auto;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.FTEperproject-table thead th {
+	width: auto;
+  }
+  
+  .FTEperproject-table tbody td {
+	width: auto;
+  }
+
+
+  .cashoutperproject-table-container {
+	width: auto;
+	overflow-x: auto;
+	margin-bottom: 20px;
+  }
+
+
+.cashoutperproject-table {
+	width: auto;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.cashoutperproject-table thead th {
+	width: auto;
+  }
+  
+  .cashoutperproject-table tbody td {
+	width: auto;
+  }
+
+
+
+
+.cash-out-table {
+	width: 100%;
+	margin-bottom: 20px 0;
+	margin-top: 10px;
+}
+
+.cash-out-table th{
+	width : auto;
+}
+  
+input[type="text"] {
+	width: 80%;
+	border: 1px solid #ddd;
+	padding: 5px;	
+	overflow: hidden;
+	box-sizing: border-box;
+	
+
+	
+  }
+
+.add-subtask-btn {
+
+	flex: 1;
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.delete-subtask-btn {
+
+	flex: 1;
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.add-project-btn {
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.add-phase {
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.delete-phase {
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.delete-project-btn {
+	background-color: #ddd;
+	border: none;
+	padding: 5px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.project-name {
+	display: center;
+	font-weight: bold;
+	cursor: pointer;
+	
+ }
+ .Sub-task-name{
+	cursor: pointer;
+ }
+
+ .project-container{
+	width: 80%;
+ }
+  
+
+.Sub-task-container{
+	width: 80%;
+}
+
+
+input[type="submit"] {
+	padding: 10px 20px;
+	background-color: green;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+  }
+  
+  a#download {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 50px;
+	height: 18px;
+	padding: 10px 20px;
+	background-color: green;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	margin-bottom: 20px 0;
+	margin-top: 2px;
+	margin-left: 15px;
+
+	margin-right: 15px;
+	
+  }
+
+  a#TJM {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 50px;
+	height: 18px;
+
+	padding: 10px 20px;
+	background-color: #bf1515;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	margin-bottom: 20px 0;
+	margin-top: 2px;
+
+	margin-right: 15px;
+	
+  }
+
+  a#FTE {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 50px;
+	height: 18px;
+
+	padding: 10px 20px;
+	background-color: #156ebf;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	margin-bottom: 20px 0;
+	margin-top: 2px;
+
+	margin-right: 15px;
+
+	
+  }
+  a#gantt-button {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 50px;
+	height: 18px;
+
+	padding: 10px 20px;
+	background-color: #156ebf;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	margin-bottom: 20px 0;
+	margin-top: 2px;
+
+	margin-right: 15px;
+
+  }
+
+  a#CashOut {
+	display: flex;
+	justify-content: center;
+    align-items: center;
+	width: 60px;
+	height: 18px;
+
+	padding: 10px 20px;
+	background-color: #156ebf;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	font-size: 16px;
+	cursor: pointer;
+	text-decoration: none;
+	margin-bottom: 20px 0;
+	margin-top: 2px;
+
+	
+  }
+  #boutons{
+	display: flex;
+	flex-direction: row;
+	/*justify-content: space-between;*/
+  }
+ 
+
+  
+  
+
+  input[type="file"] {
+	padding: 10px;
+	border-radius: 5px;
+	border: 1px solid gray;
+	font-size: 15px;
+  }
+
+  .gantt-container {
+    width: 90vw; 
+    margin: 0 auto;
+}
+
+.chart-controls {
+    text-align: center;
+}
+.chart-controls > p {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.gantt .bar-progress {
+    fill: #a3a3ff !important;
+}
+
+.special .bar-progress {
+    fill: red !important;
+}
+
+
+
+.main-task .bar-progress {
+    fill: red !important;
+}
+
+
+
+
+
+  
+
+  
