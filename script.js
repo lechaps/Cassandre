@@ -1277,7 +1277,7 @@ function generateCashOuttable(json)
          Object.entries(view.profils).forEach(([profil, charge]) => {
            // Get the TJM for each profile and multiply it by the FTE for each month
            const tjm = getProfilValue(json, viewName, profil);
-           const fte = charge * 4.33 / 20;
+           const fte = charge * 4.33 // / 20;
            tableData[viewName][fiscalYear] += tjm * fte;
            projectdata[viewName][fiscalYear] += tjm * fte;
 
@@ -1407,7 +1407,7 @@ function generateCashoutperproject(json)
          Object.entries(view.profils).forEach(([profil, charge]) => {
            // Get the TJM for each profile and multiply it by the FTE for each month
            const tjm = getProfilValue(json, viewName, profil);
-           const fte = charge * 4.33 / 20;
+           const fte = charge * 4.33 // / 20;
            tableData[viewName][fiscalYear] += tjm * fte;
            projectdata[viewName][fiscalYear] += tjm * fte;
 
